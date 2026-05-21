@@ -60,7 +60,7 @@ class axi4_transaction extends uvm_sequence_item;
     // Constraints
     // =========================================================================
 
-    // --- Data / strobe array size must match burst length ---
+    // Data / strobe array size must match burst length
     constraint c_data_size {
         data.size() == len + 1;
     }
@@ -69,35 +69,35 @@ class axi4_transaction extends uvm_sequence_item;
         strb.size() == len + 1;
     }
 
-    // --- Burst size must not exceed data bus width ---
+    // Burst size must not exceed data bus width
     // 2^size <= DATA_WIDTH / 8  →  size <= log2(DATA_WIDTH / 8)
     constraint c_size_max {
         (1 << size) <= (AXI4_DATA_WIDTH / 8);
     }
 
-    // --- WRAP burst: len must be 2, 4, 8, or 16 beats (len = 1, 3, 7, 15) ---
+    // WRAP burst: len must be 2, 4, 8, or 16 beats (len = 1, 3, 7, 15)
     constraint c_wrap_len {
         (burst == AXI4_BURST_WRAP) -> len inside {1, 3, 7, 15};
     }
 
-    // --- WRAP burst: start address must be aligned to transfer size ---
+    // WRAP burst: start address must be aligned to transfer size
     constraint c_wrap_align {
         (burst == AXI4_BURST_WRAP) -> (addr % (1 << size)) == 0;
     }
 
-    // --- FIXED burst: length must not exceed 16 beats (AXI4 spec) ---
+    // FIXED burst: length must not exceed 16 beats (AXI4 spec)
     constraint c_fixed_len {
         (burst == AXI4_BURST_FIXED) -> len <= 15;
     }
 
-    // --- Read transactions: strobe is not used, set to all-1s ---
+    // Read transactions: strobe is not used, set to all-1s
     constraint c_read_strb {
         if (dir == AXI4_READ) {
             foreach (strb[i]) strb[i] == {AXI4_STRB_WIDTH{1'b1}};
         }
     }
 
-    // --- Default distribution: favour common burst types ---
+    // Default distribution: favour common burst types
     constraint c_burst_dist {
         burst dist {
             AXI4_BURST_INCR  := 60,
@@ -106,7 +106,7 @@ class axi4_transaction extends uvm_sequence_item;
         };
     }
 
-    // --- Default distribution: favour shorter bursts for faster sim ---
+    // Default distribution: favour shorter bursts for faster sim
     constraint c_len_dist {
         len dist {
             0       := 30,      // single beat

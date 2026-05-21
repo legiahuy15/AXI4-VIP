@@ -32,7 +32,7 @@
     } axi4_burst_type_e;
 
     // ---------------------------------------------------------------------------
-    // 3. Response type (AXI4 spec §A3.4.4)
+    // 3. Response type (AXI4 spec)
     //    Indicates the status of a read/write transaction.
     //        OKAY   — normal access success
     //        EXOKAY — exclusive access success
