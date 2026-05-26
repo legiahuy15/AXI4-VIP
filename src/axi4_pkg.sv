@@ -20,11 +20,11 @@ package axi4_pkg;
     import uvm_pkg::*;
 
     // =========================================================================
-    // Core Types & Transaction Objects  (src/common/)
+    // Core Types & Transaction Objects  (src/cfg/)
     // =========================================================================
-    `include "common/axi4_types.sv"
-    `include "common/axi4_agent_config.sv"
-    `include "common/axi4_transaction.sv"
+    `include "cfg/axi4_types.sv"
+    `include "cfg/axi4_agent_config.sv"
+    `include "cfg/axi4_transaction.sv"
 
     // =========================================================================
     // Master-side Components  (src/master/)
