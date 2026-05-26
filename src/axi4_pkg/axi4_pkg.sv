@@ -38,4 +38,10 @@ package axi4_pkg;
     `include "axi4_slave_monitor.sv"
     `include "axi4_slave_agent.sv"
 
+    // =========================================================================
+    // Environment-level Components
+    // =========================================================================
+    `include "axi4_coverage.sv"
+    `include "axi4_scoreboard.sv"
+
 endpackage : axi4_pkg

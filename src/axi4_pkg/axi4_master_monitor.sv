@@ -210,8 +210,7 @@ class axi4_master_monitor extends uvm_monitor;
                                     tr.id, tr.addr, tr.resp.name()), UVM_MEDIUM)
                 ap.write(tr);
             end else begin
-                `uvm_error(get_type_name(),
-                           $sformatf("B response ID=0x%0h — no matching write pending", bid))
+                `uvm_error(get_type_name(), $sformatf("B response ID=0x%0h — no matching write pending", bid))
             end
         end
     endtask : monitor_b_channel
