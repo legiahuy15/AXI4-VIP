@@ -27,20 +27,29 @@ package axi4_pkg;
     `include "cfg/axi4_transaction.sv"
 
     // =========================================================================
-    // Master-side Components  (src/master/)
+    // Master-side Components  (src/mst/)
     // =========================================================================
-    `include "master/axi4_master_sequencer.sv"
-    `include "master/axi4_master_driver.sv"
-    `include "master/axi4_master_monitor.sv"
-    `include "master/axi4_master_agent.sv"
+    `include "mst/axi4_master_sequencer.sv"
+    `include "mst/axi4_master_driver.sv"
+    `include "mst/axi4_master_monitor.sv"
+    `include "mst/axi4_master_agent.sv"
 
     // =========================================================================
-    // Slave-side Components  (src/slave/)
+    // Slave-side Components  (src/slv/)
     // =========================================================================
-    `include "slave/axi4_slave_sequencer.sv"
-    `include "slave/axi4_slave_driver.sv"
-    `include "slave/axi4_slave_monitor.sv"
-    `include "slave/axi4_slave_agent.sv"
+    `include "slv/axi4_slave_sequencer.sv"
+    `include "slv/axi4_slave_driver.sv"
+    `include "slv/axi4_slave_monitor.sv"
+    `include "slv/axi4_slave_agent.sv"
+
+    // =========================================================================
+    // Sequence Library  (src/seq/)
+    // =========================================================================
+    `include "seq/axi4_base_sequence.sv"
+    `include "seq/axi4_single_write_seq.sv"
+    `include "seq/axi4_single_read_seq.sv"
+    `include "seq/axi4_write_read_back_seq.sv"
+    `include "seq/axi4_random_seq.sv"
 
     // =========================================================================
     // Environment-level Components  (src/env/)
