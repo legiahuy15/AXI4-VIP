@@ -175,7 +175,7 @@ class axi4_coverage extends uvm_subscriber #(axi4_transaction);
     //   Response and strobe covergroups are sampled per-beat where appropriate.
     // =========================================================================
     function void write(axi4_transaction t);
-        // ---- Copy scalar fields for sampling ----
+        // Copy scalar fields for sampling
         m_dir    = t.dir;
         m_id     = t.id;
         m_addr   = t.addr;
@@ -190,11 +190,11 @@ class axi4_coverage extends uvm_subscriber #(axi4_transaction);
         // Compute address alignment: aligned if addr % (2^size) == 0
         m_addr_aligned = (t.addr % (1 << t.size)) == 0;
 
-        // ---- Sample transaction-level covergroups ----
+        // Sample transaction-level covergroups
         cg_transaction.sample();
         cg_address.sample();
 
-        // ---- Direction-specific coverage ----
+        // Direction-specific coverage
         if (t.dir == AXI4_WRITE) begin
             // Write: single response per burst (B channel)
             m_resp = t.resp;

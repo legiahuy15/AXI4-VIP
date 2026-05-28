@@ -11,6 +11,9 @@
 //               here — it must be compiled separately before this package.
 //==============================================================================
 
+`ifndef AXI4_PKG_INCLUDED_
+`define AXI4_PKG_INCLUDED_
+
 package axi4_pkg;
 
     // =========================================================================
@@ -60,3 +63,5 @@ package axi4_pkg;
     `include "env/axi4_vip_env.sv"
 
 endpackage : axi4_pkg
+
+`endif // AXI4_PKG_INCLUDED_

@@ -17,7 +17,7 @@
 //               This file is `included inside axi4_pkg.sv.
 //==============================================================================
 
-// ---- Analysis port suffix declarations (must be outside class) ----
+// Analysis port suffix declarations (must be outside class)
 `uvm_analysis_imp_decl(_master)
 `uvm_analysis_imp_decl(_slave)
 

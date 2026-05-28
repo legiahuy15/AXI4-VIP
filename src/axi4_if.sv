@@ -8,6 +8,9 @@
 //               Signal widths use parameters from axi4_types.sv.
 //==============================================================================
 
+`ifndef AXI4_IF_INCLUDED_
+`define AXI4_IF_INCLUDED_
+
 interface axi4_if #(
     parameter ADDR_WIDTH = 32,
     parameter DATA_WIDTH = 32,
@@ -170,3 +173,5 @@ interface axi4_if #(
     modport monitor_mp (clocking monitor_cb, input clk, input rst_n);
 
 endinterface : axi4_if
+
+`endif // AXI4_IF_INCLUDED_

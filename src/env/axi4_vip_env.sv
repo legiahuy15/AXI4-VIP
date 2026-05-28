@@ -64,31 +64,23 @@ class axi4_vip_env extends uvm_env;
         end
 
         // ---- Propagate agent configs ----
-        uvm_config_db#(axi4_agent_config)::set(this, "master_agent", "cfg",
-                                                cfg.master_agent_cfg);
-        uvm_config_db#(axi4_agent_config)::set(this, "slave_agent", "cfg",
-                                                cfg.slave_agent_cfg);
+        uvm_config_db#(axi4_agent_config)::set(this, "master_agent", "cfg", cfg.master_agent_cfg);
+        uvm_config_db#(axi4_agent_config)::set(this, "slave_agent", "cfg", cfg.slave_agent_cfg);
 
         // ---- Propagate virtual interfaces ----
         //   Master side (required)
         if (cfg.master_vif == null)
-            `uvm_fatal(get_type_name(),
-                       "master_vif is null — set it in axi4_vip_env_config before build")
+            `uvm_fatal(get_type_name(), "master_vif is null — set it in axi4_vip_env_config before build")
 
-        uvm_config_db#(virtual axi4_if)::set(this, "master_agent", "vif",
-                                              cfg.master_vif);
+        uvm_config_db#(virtual axi4_if)::set(this, "master_agent", "vif", cfg.master_vif);
 
         //   Slave side: use slave_vif if provided, otherwise reuse master_vif
         //   (passthrough mode — both agents observe the same bus)
         if (cfg.slave_vif != null) begin
-            uvm_config_db#(virtual axi4_if)::set(this, "slave_agent", "vif",
-                                                  cfg.slave_vif);
+            uvm_config_db#(virtual axi4_if)::set(this, "slave_agent", "vif", cfg.slave_vif);
         end else begin
-            uvm_config_db#(virtual axi4_if)::set(this, "slave_agent", "vif",
-                                                  cfg.master_vif);
-            `uvm_info(get_type_name(),
-                      "slave_vif not set — reusing master_vif (passthrough mode)",
-                      UVM_MEDIUM)
+            uvm_config_db#(virtual axi4_if)::set(this, "slave_agent", "vif", cfg.master_vif);
+            `uvm_info(get_type_name(), "slave_vif not set — reusing master_vif (passthrough mode)", UVM_MEDIUM)
         end
 
         // ---- Create agents (always) ----
