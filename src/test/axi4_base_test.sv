@@ -80,9 +80,9 @@ class axi4_base_test extends uvm_test;
     // =========================================================================
     function void report_phase(uvm_phase phase);
         uvm_report_server srv;
-        super.report_phase(phase);
-
         int unsigned err_count;
+
+        super.report_phase(phase);
 
         srv = uvm_report_server::get_server();
         err_count = srv.get_severity_count(UVM_ERROR) + srv.get_severity_count(UVM_FATAL);

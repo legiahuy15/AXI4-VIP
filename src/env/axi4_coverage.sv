@@ -78,7 +78,7 @@ class axi4_coverage extends uvm_subscriber #(axi4_transaction);
 
         cp_qos: coverpoint m_qos {
             bins low      = {[0:3]};        // low priority
-            bins medium   = {[4:7]};        // medium priority
+            bins med      = {[4:7]};        // medium priority
             bins high     = {[8:11]};       // high priority
             bins critical = {[12:15]};      // critical priority
         }
