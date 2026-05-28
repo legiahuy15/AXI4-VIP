@@ -65,3 +65,5 @@ class axi4_wr_rd_test extends axi4_base_test;
     endtask : run_phase
 
 endclass : axi4_wr_rd_test
+
+`endif // AXI4_WR_RD_TEST_INCLUDED_
