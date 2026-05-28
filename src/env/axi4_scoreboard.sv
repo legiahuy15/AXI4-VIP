@@ -119,7 +119,7 @@ class axi4_scoreboard extends uvm_scoreboard;
         axi4_transaction     new_tr,
         ref axi4_transaction own_q[$],
         ref axi4_transaction other_q[$],
-        string               dir_str
+        input string         dir_str
     );
         // Search other side's queue for a matching transaction
         for (int i = 0; i < other_q.size(); i++) begin
