@@ -63,7 +63,7 @@ class axi4_slave_driver extends uvm_driver #(axi4_transaction);
         forever begin
             reset_signals();
             @(posedge vif.rst_n);
-            `uvm_info(get_type_name(), "Reset deasserted — slave driver active", UVM_MEDIUM)
+            `uvm_info(get_type_name(), "Reset deasserted - slave driver active", UVM_MEDIUM)
 
             fork
                 begin : slave_loop
@@ -74,7 +74,7 @@ class axi4_slave_driver extends uvm_driver #(axi4_transaction);
                 end
                 begin : rst_watch
                     @(negedge vif.rst_n);
-                    `uvm_info(get_type_name(), "Reset asserted — aborting", UVM_MEDIUM)
+                    `uvm_info(get_type_name(), "Reset asserted - aborting", UVM_MEDIUM)
                 end
             join_any
             disable fork;
