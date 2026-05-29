@@ -159,21 +159,32 @@ class axi4_slave_driver extends uvm_driver #(axi4_transaction);
                                         aw_id, aw_addr, aw_len), UVM_HIGH)
                 end
 
-                // ----- W data collection (based on WLAST) -----
+                // ----- W data collection (WREADY-first handshake) -----
+                //   Slave asserts WREADY first, then waits for WVALID.
+                //   This avoids the stale-WVALID race condition that occurs
+                //   when checking WVALID before WREADY (master keeps WVALID
+                //   high between beats, causing phantom beat captures).
                 begin : w_phase
                     bit wlast_seen = 0;
                     while (!wlast_seen) begin
+                        // Apply back-pressure delay before accepting next beat
+                        rand_ready_delay();
+
+                        // Assert WREADY — slave is ready to accept data
+                        vif.slave_cb.WREADY <= 1'b1;
+
+                        // Wait for WVALID at the same clock edge (AXI4 handshake)
                         do @(vif.slave_cb);
                         while (!vif.slave_cb.WVALID);
 
+                        // Handshake complete — capture data at this point
                         w_data_q.push_back(vif.slave_cb.WDATA);
                         w_strb_q.push_back(vif.slave_cb.WSTRB);
                         wlast_seen = vif.slave_cb.WLAST;
 
-                        rand_ready_delay();
-                        vif.slave_cb.WREADY <= 1'b1;
-                        @(vif.slave_cb);
+                        // Deassert WREADY and wait 1 cycle to ensure clean separation
                         vif.slave_cb.WREADY <= 1'b0;
+                        @(vif.slave_cb);
                     end
                 end
             join
