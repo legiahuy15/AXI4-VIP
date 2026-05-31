@@ -14,16 +14,14 @@ class axi4_transaction extends uvm_sequence_item;
     // Transaction fields
     // =========================================================================
 
-    // Direction (VIP-internal)
-    rand axi4_dir_e                         dir;
-
-    // Write channel ordering (VIP-internal, only used for AXI4_WRITE)
-    rand axi4_wr_order_e                    wr_order;
+    // VIP-internal
+    rand axi4_dir_e                         dir;        // Direction (0: read - 1: write)
+    rand axi4_wr_order_e                    wr_order;   // Write channels (AW-W) ordering
 
     // Address channel (shared between AW and AR)
     rand bit [AXI4_ID_WIDTH-1:0]            id;
     rand bit [AXI4_ADDR_WIDTH-1:0]          addr;
-    rand bit [AXI4_LEN_WIDTH-1:0]           len;        // Burst length = len + 1 beats
+    rand bit [AXI4_LEN_WIDTH-1:0]           len;        // Burst length = len + 1 (beats)
     rand axi4_size_e                        size;
     rand axi4_burst_type_e                  burst;
     rand axi4_lock_e                        lock;
@@ -33,8 +31,8 @@ class axi4_transaction extends uvm_sequence_item;
     rand bit [3:0]                          region;
 
     // Write data channel
-    rand bit [AXI4_DATA_WIDTH-1:0]          data[];     // One entry per beat
-    rand bit [AXI4_STRB_WIDTH-1:0]          strb[];     // One entry per beat
+    rand bit [AXI4_DATA_WIDTH-1:0]          data[];     // 1 entry per beat
+    rand bit [AXI4_STRB_WIDTH-1:0]          strb[];     // 1 entry per beat
 
     // Write response — B channel (1 per burst)
     rand axi4_resp_e                        resp;
@@ -48,19 +46,19 @@ class axi4_transaction extends uvm_sequence_item;
     `uvm_object_utils_begin(axi4_transaction)
         `uvm_field_enum(axi4_dir_e,        dir,      UVM_ALL_ON)
         `uvm_field_enum(axi4_wr_order_e,   wr_order, UVM_ALL_ON)
-        `uvm_field_int(                    id,     UVM_ALL_ON)
-        `uvm_field_int(                    addr,   UVM_ALL_ON)
-        `uvm_field_int(                    len,    UVM_ALL_ON)
-        `uvm_field_enum(axi4_size_e,       size,   UVM_ALL_ON)
-        `uvm_field_enum(axi4_burst_type_e, burst,  UVM_ALL_ON)
-        `uvm_field_enum(axi4_lock_e,       lock,   UVM_ALL_ON)
-        `uvm_field_int(                    cache,  UVM_ALL_ON)
-        `uvm_field_int(                    prot,   UVM_ALL_ON)
-        `uvm_field_int(                    qos,    UVM_ALL_ON)
-        `uvm_field_int(                    region, UVM_ALL_ON)
-        `uvm_field_array_int(              data,   UVM_ALL_ON)
-        `uvm_field_array_int(              strb,   UVM_ALL_ON)
-        `uvm_field_enum(axi4_resp_e,       resp,   UVM_ALL_ON)
+        `uvm_field_int(                    id,       UVM_ALL_ON)
+        `uvm_field_int(                    addr,     UVM_ALL_ON)
+        `uvm_field_int(                    len,      UVM_ALL_ON)
+        `uvm_field_enum(axi4_size_e,       size,     UVM_ALL_ON)
+        `uvm_field_enum(axi4_burst_type_e, burst,    UVM_ALL_ON)
+        `uvm_field_enum(axi4_lock_e,       lock,     UVM_ALL_ON)
+        `uvm_field_int(                    cache,    UVM_ALL_ON)
+        `uvm_field_int(                    prot,     UVM_ALL_ON)
+        `uvm_field_int(                    qos,      UVM_ALL_ON)
+        `uvm_field_int(                    region,   UVM_ALL_ON)
+        `uvm_field_array_int(              data,     UVM_ALL_ON)
+        `uvm_field_array_int(              strb,     UVM_ALL_ON)
+        `uvm_field_enum(axi4_resp_e,       resp,     UVM_ALL_ON)
         // Note: rresp[] uses enum array — no built-in macro for enum dynamic
         //       arrays, so do_copy/do_compare/do_print handle it manually.
     `uvm_object_utils_end

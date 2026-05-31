@@ -52,18 +52,18 @@
     //      Must not exceed the data bus width (DATA_WIDTH / 8 bytes).
     // ---------------------------------------------------------------------------
     typedef enum bit [2:0] {
-        AXI4_SIZE_1B   = 3'b000,   //   1 byte   per transfer
-        AXI4_SIZE_2B   = 3'b001,   //   2 bytes  per transfer
-        AXI4_SIZE_4B   = 3'b010,   //   4 bytes  per transfer  ← max for 32-bit bus
-        AXI4_SIZE_8B   = 3'b011,   //   8 bytes  per transfer
-        AXI4_SIZE_16B  = 3'b100,   //  16 bytes  per transfer
-        AXI4_SIZE_32B  = 3'b101,   //  32 bytes  per transfer
-        AXI4_SIZE_64B  = 3'b110,   //  64 bytes  per transfer
-        AXI4_SIZE_128B = 3'b111    // 128 bytes  per transfer
+        AXI4_SIZE_1B   = 3'b000,   //   1 byte  per transfer
+        AXI4_SIZE_2B   = 3'b001,   //   2 bytes per transfer
+        AXI4_SIZE_4B   = 3'b010,   //   4 bytes per transfer  ← max for 32-bit bus
+        AXI4_SIZE_8B   = 3'b011,   //   8 bytes per transfer
+        AXI4_SIZE_16B  = 3'b100,   //  16 bytes per transfer
+        AXI4_SIZE_32B  = 3'b101,   //  32 bytes per transfer
+        AXI4_SIZE_64B  = 3'b110,   //  64 bytes per transfer
+        AXI4_SIZE_128B = 3'b111    // 128 bytes per transfer
     } axi4_size_e;
 
     // ---------------------------------------------------------------------------
-    // 5. Lock type (AXI4 spec §A7.2)
+    // 5. Lock type (AXI4 spec)
     //        NORMAL    — normal access
     //        EXCLUSIVE — exclusive access (for atomic read-modify-write)
     // ---------------------------------------------------------------------------
