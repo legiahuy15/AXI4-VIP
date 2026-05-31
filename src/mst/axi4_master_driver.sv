@@ -91,24 +91,24 @@ class axi4_master_driver extends uvm_driver #(axi4_transaction);
             AXI4_WRITE: begin
                 case (tr.wr_order)
                     AXI4_WR_PARALLEL: begin
-                        `uvm_info(get_type_name(), "Write order: AW || W (parallel)", UVM_HIGH)
+                        `uvm_info(get_type_name(), "Write order: AW || W (parallel)", UVM_MEDIUM)
                         fork
                             drive_aw_channel(tr);
                             drive_w_channel(tr);
                         join
                     end
                     AXI4_WR_AW_BEFORE_W: begin
-                        `uvm_info(get_type_name(), "Write order: AW -> W (sequential)", UVM_HIGH)
+                        `uvm_info(get_type_name(), "Write order: AW -> W (sequential)", UVM_MEDIUM)
                         drive_aw_channel(tr);
                         drive_w_channel(tr);
                     end
                     AXI4_WR_W_BEFORE_AW: begin
-                        `uvm_info(get_type_name(), "Write order: W -> AW (W first)", UVM_HIGH)
+                        `uvm_info(get_type_name(), "Write order: W -> AW (W first)", UVM_MEDIUM)
                         fork
                             drive_w_channel(tr);
                             begin
-                                // Delay AW so W channel starts first
-                                repeat ($urandom_range(1, 3)) @(vif.master_cb);
+                                // Delay AW so W channel starts first (2-5 cycles gap)
+                                repeat ($urandom_range(5, 2)) @(vif.master_cb);
                                 drive_aw_channel(tr);
                             end
                         join
