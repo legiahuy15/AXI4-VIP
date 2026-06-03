@@ -21,6 +21,7 @@ SV_SOURCES = \
     $(SRC_DIR)/axi4_if.sv \
     $(SRC_DIR)/axi4_pkg.sv \
     $(SRC_DIR)/axi4_test_pkg.sv \
+    $(SRC_DIR)/sva/axi4_sva.sv \
     $(SRC_DIR)/tb_top.sv
 
 # ==============================================================================

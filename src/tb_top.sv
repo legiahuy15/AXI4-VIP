@@ -62,6 +62,64 @@ module tb_top;
     );
 
     // =========================================================================
+    // SVA Bind — Attach protocol assertions to AXI4 interface
+    //   Uses SystemVerilog `bind` so the SVA module is instantiated inside
+    //   the interface without modifying axi4_if.sv.
+    // =========================================================================
+    bind axi4_if axi4_sva #(
+        .ADDR_WIDTH (ADDR_WIDTH),
+        .DATA_WIDTH (DATA_WIDTH),
+        .ID_WIDTH   (ID_WIDTH)
+    ) u_axi4_sva (
+        .clk      (clk),
+        .rst_n    (rst_n),
+        // AW Channel
+        .AWID     (AWID),
+        .AWADDR   (AWADDR),
+        .AWLEN    (AWLEN),
+        .AWSIZE   (AWSIZE),
+        .AWBURST  (AWBURST),
+        .AWLOCK   (AWLOCK),
+        .AWCACHE  (AWCACHE),
+        .AWPROT   (AWPROT),
+        .AWQOS    (AWQOS),
+        .AWREGION (AWREGION),
+        .AWVALID  (AWVALID),
+        .AWREADY  (AWREADY),
+        // W Channel
+        .WDATA    (WDATA),
+        .WSTRB    (WSTRB),
+        .WLAST    (WLAST),
+        .WVALID   (WVALID),
+        .WREADY   (WREADY),
+        // B Channel
+        .BID      (BID),
+        .BRESP    (BRESP),
+        .BVALID   (BVALID),
+        .BREADY   (BREADY),
+        // AR Channel
+        .ARID     (ARID),
+        .ARADDR   (ARADDR),
+        .ARLEN    (ARLEN),
+        .ARSIZE   (ARSIZE),
+        .ARBURST  (ARBURST),
+        .ARLOCK   (ARLOCK),
+        .ARCACHE  (ARCACHE),
+        .ARPROT   (ARPROT),
+        .ARQOS    (ARQOS),
+        .ARREGION (ARREGION),
+        .ARVALID  (ARVALID),
+        .ARREADY  (ARREADY),
+        // R Channel
+        .RID      (RID),
+        .RDATA    (RDATA),
+        .RRESP    (RRESP),
+        .RLAST    (RLAST),
+        .RVALID   (RVALID),
+        .RREADY   (RREADY)
+    );
+
+    // =========================================================================
     // UVM Setup & Execution
     // =========================================================================
     initial begin
