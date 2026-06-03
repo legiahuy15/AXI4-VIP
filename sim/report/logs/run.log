@@ -1,5 +1,5 @@
 # vsim -c -l ./report/logs/run.log -sv_seed 15 "+UVM_TESTNAME=axi4_wr_rd_test" "+UVM_VERBOSITY=UVM_HIGH" "+DUMP_VCD" -do "if {[string equal [design visibility] "port"] || [string equal [design visibility] "none"]} { 	       coverage save -onexit ./report/coverage/axi4_wr_rd_test_seed_15.ucdb; 	     }; run -all; quit -f" opt_tb_top 
-# Start time: 20:25:30 on Jun 03,2026
+# Start time: 20:30:55 on Jun 03,2026
 # //  Questa Sim-64
 # //  Version 10.6b linux_x86_64 May 25 2017
 # //
@@ -103,16 +103,6 @@
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] End Of Elaboration
 # UVM_INFO ../src/test/axi4_wr_rd_test.sv(37) @ 0: uvm_test_top [axi4_wr_rd_test] Starting 10 write-read-back iterations
 # UVM_INFO ../src/test/axi4_wr_rd_test.sv(52) @ 0: uvm_test_top [axi4_wr_rd_test] [1/10] ADDR=0xb3062f7f LEN=9 BURST=AXI4_BURST_INCR
-# ** Error: [SVA] RVALID asserted during reset
-#    Time: 5 ns Started: 5 ns  Scope: tb_top.u_axi4_sva.RESET_RVALID File: ../src/sva/axi4_sva.sv Line: 188
-# ** Error: [SVA] ARVALID asserted during reset
-#    Time: 5 ns Started: 5 ns  Scope: tb_top.u_axi4_sva.RESET_ARVALID File: ../src/sva/axi4_sva.sv Line: 185
-# ** Error: [SVA] BVALID asserted during reset
-#    Time: 5 ns Started: 5 ns  Scope: tb_top.u_axi4_sva.RESET_BVALID File: ../src/sva/axi4_sva.sv Line: 182
-# ** Error: [SVA] WVALID asserted during reset
-#    Time: 5 ns Started: 5 ns  Scope: tb_top.u_axi4_sva.RESET_WVALID File: ../src/sva/axi4_sva.sv Line: 179
-# ** Error: [SVA] AWVALID asserted during reset
-#    Time: 5 ns Started: 5 ns  Scope: tb_top.u_axi4_sva.RESET_AWVALID File: ../src/sva/axi4_sva.sv Line: 176
 # UVM_INFO ../src/tb_top.sv(49) @ 95000: reporter [TOP_TB] Reset de-asserted
 # UVM_INFO ../src/slv/axi4_slave_driver.sv(66) @ 95000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Reset deasserted - slave driver active
 # UVM_INFO ../src/mst/axi4_master_driver.sv(46) @ 95000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Reset deasserted - master driver active
@@ -444,5 +434,5 @@
 # [axi4_write_read_back_seq]    20
 # ** Note: $finish    : /cadtools/mentor/Questa_10.6b/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
 #    Time: 5165 ns  Iteration: 55  Instance: /tb_top
-# End time: 20:26:02 on Jun 03,2026, Elapsed time: 0:00:32
-# Errors: 5, Warnings: 0
+# End time: 20:31:27 on Jun 03,2026, Elapsed time: 0:00:32
+# Errors: 0, Warnings: 0
