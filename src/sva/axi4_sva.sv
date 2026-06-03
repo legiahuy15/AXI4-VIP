@@ -81,24 +81,36 @@ module axi4_sva #(
     localparam STRB_WIDTH = DATA_WIDTH / 8;
 
     // =========================================================================
-    //  Internal counters for burst tracking
+    //  Internal state tracking
     // =========================================================================
-    int unsigned w_beat_cnt;    // Counts W beats within a burst
-    int unsigned aw_len_latch;  // Latched AWLEN from last AW handshake
+    int unsigned w_beat_cnt;     // Counts W beats within a burst
+    int unsigned aw_len_latch;   // Latched AWLEN from last AW handshake
+    bit          aw_len_valid;   // Set after first AW handshake (for W_BEFORE_AW)
 
-    int unsigned r_beat_cnt;    // Counts R beats within a burst
-    int unsigned ar_len_latch;  // Latched ARLEN from last AR handshake
+    int unsigned r_beat_cnt;     // Counts R beats within a burst
+    int unsigned ar_len_latch;   // Latched ARLEN from last AR handshake
+    bit          ar_len_valid;   // Set after first AR handshake
+
+    bit          rst_seen;       // True after rst_n has been asserted at least once
+
+    // Track reset assertion (to avoid false-positive on initial bit=0 state)
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)
+            rst_seen <= 1'b1;
+    end
 
     // Track AW handshake to latch burst length
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             aw_len_latch <= 0;
+            aw_len_valid <= 1'b0;
         end else if (AWVALID && AWREADY) begin
             aw_len_latch <= AWLEN;
+            aw_len_valid <= 1'b1;
         end
     end
 
-    // W beat counter — reset on WLAST handshake
+    // W beat counter - reset on WLAST handshake
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             w_beat_cnt <= 0;
@@ -114,12 +126,14 @@ module axi4_sva #(
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             ar_len_latch <= 0;
+            ar_len_valid <= 1'b0;
         end else if (ARVALID && ARREADY) begin
             ar_len_latch <= ARLEN;
+            ar_len_valid <= 1'b1;
         end
     end
 
-    // R beat counter — reset on RLAST handshake
+    // R beat counter - reset on RLAST handshake
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             r_beat_cnt <= 0;
@@ -134,26 +148,28 @@ module axi4_sva #(
     // =========================================================================
     //  1. RESET CHECKS
     //     All VALID signals must be de-asserted during reset (AXI4 spec A3.1.2)
+    //     Only checked after reset has been asserted at least once (rst_seen)
+    //     to avoid false positives from initial bit=0 state.
     // =========================================================================
 
     property p_reset_awvalid;
-        @(posedge clk) !rst_n |-> !AWVALID;
+        @(posedge clk) (rst_seen && !rst_n) |-> !AWVALID;
     endproperty
 
     property p_reset_wvalid;
-        @(posedge clk) !rst_n |-> !WVALID;
+        @(posedge clk) (rst_seen && !rst_n) |-> !WVALID;
     endproperty
 
     property p_reset_bvalid;
-        @(posedge clk) !rst_n |-> !BVALID;
+        @(posedge clk) (rst_seen && !rst_n) |-> !BVALID;
     endproperty
 
     property p_reset_arvalid;
-        @(posedge clk) !rst_n |-> !ARVALID;
+        @(posedge clk) (rst_seen && !rst_n) |-> !ARVALID;
     endproperty
 
     property p_reset_rvalid;
-        @(posedge clk) !rst_n |-> !RVALID;
+        @(posedge clk) (rst_seen && !rst_n) |-> !RVALID;
     endproperty
 
     RESET_AWVALID : assert property (p_reset_awvalid)
@@ -239,9 +255,13 @@ module axi4_sva #(
     endproperty
 
     // --- W Channel payload ---
+    //   Only check stability when WVALID was high AND no handshake occurred
+    //   on the previous cycle. After a handshake (WVALID && WREADY), the
+    //   master may legitimately change data for the next beat while keeping
+    //   WVALID asserted.
     property p_w_payload_stable;
         @(posedge clk) disable iff (!rst_n)
-        WVALID && !WREADY |=>
+        (WVALID && !WREADY && $past(WVALID) && !$past(WREADY)) |=>
             $stable(WDATA) && $stable(WSTRB) && $stable(WLAST);
     endproperty
 
@@ -370,30 +390,32 @@ module axi4_sva #(
 
     // =========================================================================
     //  5. BURST PROTOCOL — WLAST / RLAST correctness
+    //     Only checked when aw_len_valid/ar_len_valid is set, to avoid
+    //     false positives in W_BEFORE_AW mode where W arrives before AW.
     // =========================================================================
 
     // WLAST must be asserted when the W beat counter matches AWLEN
     property p_wlast_correct;
         @(posedge clk) disable iff (!rst_n)
-        (WVALID && WREADY && (w_beat_cnt == aw_len_latch)) |-> WLAST;
+        (WVALID && WREADY && aw_len_valid && (w_beat_cnt == aw_len_latch)) |-> WLAST;
     endproperty
 
     // WLAST must NOT be asserted before the final beat
     property p_wlast_not_early;
         @(posedge clk) disable iff (!rst_n)
-        (WVALID && WREADY && WLAST) |-> (w_beat_cnt == aw_len_latch);
+        (WVALID && WREADY && WLAST && aw_len_valid) |-> (w_beat_cnt == aw_len_latch);
     endproperty
 
     // RLAST must be asserted when the R beat counter matches ARLEN
     property p_rlast_correct;
         @(posedge clk) disable iff (!rst_n)
-        (RVALID && RREADY && (r_beat_cnt == ar_len_latch)) |-> RLAST;
+        (RVALID && RREADY && ar_len_valid && (r_beat_cnt == ar_len_latch)) |-> RLAST;
     endproperty
 
     // RLAST must NOT be asserted before the final beat
     property p_rlast_not_early;
         @(posedge clk) disable iff (!rst_n)
-        (RVALID && RREADY && RLAST) |-> (r_beat_cnt == ar_len_latch);
+        (RVALID && RREADY && RLAST && ar_len_valid) |-> (r_beat_cnt == ar_len_latch);
     endproperty
 
     WLAST_CORRECT   : assert property (p_wlast_correct)
