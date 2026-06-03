@@ -62,11 +62,11 @@ module tb_top;
     );
 
     // =========================================================================
-    // SVA Bind — Attach protocol assertions to AXI4 interface
-    //   Uses SystemVerilog `bind` so the SVA module is instantiated inside
-    //   the interface without modifying axi4_if.sv.
+    // SVA — AXI4 protocol assertion checker
+    //   Direct instantiation (QuestaSim 10.6b does not support bind-to-interface).
+    //   All signals are connected via the interface instance `intf`.
     // =========================================================================
-    bind axi4_if axi4_sva #(
+    axi4_sva #(
         .ADDR_WIDTH (ADDR_WIDTH),
         .DATA_WIDTH (DATA_WIDTH),
         .ID_WIDTH   (ID_WIDTH)
@@ -74,49 +74,49 @@ module tb_top;
         .clk      (clk),
         .rst_n    (rst_n),
         // AW Channel
-        .AWID     (AWID),
-        .AWADDR   (AWADDR),
-        .AWLEN    (AWLEN),
-        .AWSIZE   (AWSIZE),
-        .AWBURST  (AWBURST),
-        .AWLOCK   (AWLOCK),
-        .AWCACHE  (AWCACHE),
-        .AWPROT   (AWPROT),
-        .AWQOS    (AWQOS),
-        .AWREGION (AWREGION),
-        .AWVALID  (AWVALID),
-        .AWREADY  (AWREADY),
+        .AWID     (intf.AWID),
+        .AWADDR   (intf.AWADDR),
+        .AWLEN    (intf.AWLEN),
+        .AWSIZE   (intf.AWSIZE),
+        .AWBURST  (intf.AWBURST),
+        .AWLOCK   (intf.AWLOCK),
+        .AWCACHE  (intf.AWCACHE),
+        .AWPROT   (intf.AWPROT),
+        .AWQOS    (intf.AWQOS),
+        .AWREGION (intf.AWREGION),
+        .AWVALID  (intf.AWVALID),
+        .AWREADY  (intf.AWREADY),
         // W Channel
-        .WDATA    (WDATA),
-        .WSTRB    (WSTRB),
-        .WLAST    (WLAST),
-        .WVALID   (WVALID),
-        .WREADY   (WREADY),
+        .WDATA    (intf.WDATA),
+        .WSTRB    (intf.WSTRB),
+        .WLAST    (intf.WLAST),
+        .WVALID   (intf.WVALID),
+        .WREADY   (intf.WREADY),
         // B Channel
-        .BID      (BID),
-        .BRESP    (BRESP),
-        .BVALID   (BVALID),
-        .BREADY   (BREADY),
+        .BID      (intf.BID),
+        .BRESP    (intf.BRESP),
+        .BVALID   (intf.BVALID),
+        .BREADY   (intf.BREADY),
         // AR Channel
-        .ARID     (ARID),
-        .ARADDR   (ARADDR),
-        .ARLEN    (ARLEN),
-        .ARSIZE   (ARSIZE),
-        .ARBURST  (ARBURST),
-        .ARLOCK   (ARLOCK),
-        .ARCACHE  (ARCACHE),
-        .ARPROT   (ARPROT),
-        .ARQOS    (ARQOS),
-        .ARREGION (ARREGION),
-        .ARVALID  (ARVALID),
-        .ARREADY  (ARREADY),
+        .ARID     (intf.ARID),
+        .ARADDR   (intf.ARADDR),
+        .ARLEN    (intf.ARLEN),
+        .ARSIZE   (intf.ARSIZE),
+        .ARBURST  (intf.ARBURST),
+        .ARLOCK   (intf.ARLOCK),
+        .ARCACHE  (intf.ARCACHE),
+        .ARPROT   (intf.ARPROT),
+        .ARQOS    (intf.ARQOS),
+        .ARREGION (intf.ARREGION),
+        .ARVALID  (intf.ARVALID),
+        .ARREADY  (intf.ARREADY),
         // R Channel
-        .RID      (RID),
-        .RDATA    (RDATA),
-        .RRESP    (RRESP),
-        .RLAST    (RLAST),
-        .RVALID   (RVALID),
-        .RREADY   (RREADY)
+        .RID      (intf.RID),
+        .RDATA    (intf.RDATA),
+        .RRESP    (intf.RRESP),
+        .RLAST    (intf.RLAST),
+        .RVALID   (intf.RVALID),
+        .RREADY   (intf.RREADY)
     );
 
     // =========================================================================
