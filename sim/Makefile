@@ -28,10 +28,13 @@ SV_SOURCES = \
 # 2. Configurable Variables (Can be overridden via command line)
 # ==============================================================================
 TESTNAME      ?= axi4_wr_rd_test
-SEED          ?= random # Set to 'random' or a specific integer (e.g., 42)
+# Set to 'random' or a specific integer (e.g., 42)
+SEED          ?= random
 UVM_VERBOSITY ?= UVM_LOW
-NUM_RUNS      ?= 5 # Number of iterations per test in regression
-USE_COVERAGE  ?= 1 # 1: Enable coverage collection, 0: Disable for speed
+# Number of iterations per test in regression
+NUM_RUNS      ?= 5
+# 1: Enable coverage collection, 0: Disable for speed
+USE_COVERAGE  ?= 1
 
 # Additional user-defined simulator arguments
 PLUSARGS      += +DUMP_VCD
