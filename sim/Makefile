@@ -47,13 +47,14 @@ TEST_LIST     ?= axi4_wr_rd_test
 # ==============================================================================
 VLOG_FLAGS = -sv -work work -timescale 1ns/1ps +incdir+$(SRC_DIR) -l $(LOG_DIR)/compile.log
 VOPT_FLAGS = +acc -work work -l $(LOG_DIR)/optimize.log
-VSIM_FLAGS = -c -work work -l $(LOG_DIR)/run.log
+VSIM_BASE_FLAGS = -c -work work
+VSIM_FLAGS = $(VSIM_BASE_FLAGS) -l $(LOG_DIR)/run.log
 
 # Coverage collection settings
 ifeq ($(USE_COVERAGE),1)
     VLOG_FLAGS += -cover sbcet
     VOPT_FLAGS += -cover sbcet
-    VSIM_FLAGS += -coverage
+    VSIM_BASE_FLAGS += -coverage
 endif
 
 # Dynamic Seed Generation
@@ -169,13 +170,13 @@ $(REGRESS_TARGETS):
 	log_file=$(LOG_DIR)/$${test_name}_run_$${run_idx}_seed_$${seed}.log; \
 	ucdb_file=$(COV_DIR)/$${test_name}_run_$${run_idx}_seed_$${seed}.ucdb; \
 	echo "[REGRESS-RUN] $$test_name | Iteration: $$run_idx | Seed: $$seed"; \
-	vsim $(VSIM_FLAGS) -sv_seed $$seed \
+	vsim $(VSIM_BASE_FLAGS) -sv_seed $$seed \
 		+UVM_TESTNAME=$$test_name \
 		+UVM_VERBOSITY=$(UVM_VERBOSITY) \
 		$(PLUSARGS) \
 		-l $$log_file \
 		-do "coverage save -onexit $$ucdb_file; run -all; quit -f" \
-		opt_tb_top > /dev/null 2>&1; \
+		opt_tb_top; \
 	if grep -q -E "UVM_ERROR\s*:\s*[1-9]" $$log_file || grep -q -E "UVM_FATAL\s*:\s*[1-9]" $$log_file; then \
 		echo "              ==> $$test_name (Run $$run_idx) [FAILED] - Log: $$log_file"; \
 	else \
