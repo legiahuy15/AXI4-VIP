@@ -10,10 +10,10 @@ cModel Technology
 Z0 d/home/hle/AXI4-VIP/sim
 Yaxi4_if
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-!s110 1780498840
+!s110 1780542584
 !i10b 1
 !s100 Ug8M7h8i6:81BfEKN=kCm0
-IYS>n?ni_zl31azHTOAL><2
+ImdZV:j9ma7=C@HDgGKd>20
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 !s105 axi4_if_sv_unit
 S1
@@ -26,39 +26,40 @@ Z3 OL;L;10.6b;65
 r1
 !s85 0
 31
-Z4 !s108 1780498840.000000
+Z4 !s108 1780542584.000000
 Z5 !s107 ../src/test/axi4_wr_rd_test.sv|../src/test/axi4_base_test.sv|../src/env/axi4_vip_env.sv|../src/env/axi4_vip_env_config.sv|../src/env/axi4_scoreboard.sv|../src/env/axi4_coverage.sv|../src/seq/axi4_random_seq.sv|../src/seq/axi4_write_read_back_seq.sv|../src/seq/axi4_single_read_seq.sv|../src/seq/axi4_single_write_seq.sv|../src/seq/axi4_base_sequence.sv|../src/slv/axi4_slave_agent.sv|../src/slv/axi4_slave_monitor.sv|../src/slv/axi4_slave_driver.sv|../src/slv/axi4_slave_sequencer.sv|../src/mst/axi4_master_agent.sv|../src/mst/axi4_master_monitor.sv|../src/mst/axi4_master_driver.sv|../src/mst/axi4_master_sequencer.sv|../src/cfg/axi4_transaction.sv|../src/cfg/axi4_agent_config.sv|../src/cfg/axi4_types.sv|/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_deprecated_defines.svh|/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_reg_defines.svh|/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_callback_defines.svh|/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_sequence_defines.svh|/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/tlm1/uvm_tlm_imps.svh|/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_tlm_defines.svh|/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_printer_defines.svh|/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_object_defines.svh|/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_phase_defines.svh|/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_message_defines.svh|/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_version_defines.svh|/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/uvm_macros.svh|../src/tb_top.sv|../src/sva/axi4_sva.sv|../src/axi4_test_pkg.sv|../src/axi4_pkg.sv|../src/axi4_if.sv|
-Z6 !s90 -sv|-work|work|-timescale|1ns/1ps|+incdir+../src|-l|./report/logs/compile.log|../src/axi4_if.sv|../src/axi4_pkg.sv|../src/axi4_test_pkg.sv|../src/sva/axi4_sva.sv|../src/tb_top.sv|
+Z6 !s90 -sv|-work|work|-timescale|1ns/1ps|+incdir+../src|-l|./report/logs/compile.log|-cover|sbcet|../src/axi4_if.sv|../src/axi4_pkg.sv|../src/axi4_test_pkg.sv|../src/sva/axi4_sva.sv|../src/tb_top.sv|
 !i113 0
-Z7 o-sv -work work -timescale 1ns/1ps -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-Z8 !s92 -sv -work work -timescale 1ns/1ps +incdir+../src -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-Z9 tCvgOpt 0
+Z7 !s102 -cover sbcet
+Z8 o-sv -work work -timescale 1ns/1ps -cover sbcet -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z9 !s92 -sv -work work -timescale 1ns/1ps +incdir+../src -cover sbcet -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z10 tCvgOpt 0
 Xaxi4_pkg
-Z10 !s115 axi4_if
+Z11 !s115 axi4_if
 R1
-Z11 DXx6 mtiUvm 7 uvm_pkg 0 22 oMKUklN?>LE6@MJe7=2><1
-Z12 !s110 1780498841
+Z12 DXx6 mtiUvm 7 uvm_pkg 0 22 oMKUklN?>LE6@MJe7=2><1
+Z13 !s110 1780542585
 !i10b 1
-!s100 VJ7X1n[Sd65S[`87o;]EQ1
-IO1okn?R=G1AX@O?FOD8E`3
-VO1okn?R=G1AX@O?FOD8E`3
+!s100 4DXUhT@]jKbJzJYED>gOK0
+IPX3LH;HlTUDeDJ0>9ib7@1
+VPX3LH;HlTUDeDJ0>9ib7@1
 S1
 R0
-w1780283943
+Z14 w1780542249
 8../src/axi4_pkg.sv
 F../src/axi4_pkg.sv
-Z13 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/uvm_macros.svh
-Z14 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_version_defines.svh
-Z15 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_message_defines.svh
-Z16 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_phase_defines.svh
-Z17 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_object_defines.svh
-Z18 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_printer_defines.svh
-Z19 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_tlm_defines.svh
-Z20 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/tlm1/uvm_tlm_imps.svh
-Z21 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_sequence_defines.svh
-Z22 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_callback_defines.svh
-Z23 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_reg_defines.svh
-Z24 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_deprecated_defines.svh
+Z15 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/uvm_macros.svh
+Z16 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_version_defines.svh
+Z17 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_message_defines.svh
+Z18 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_phase_defines.svh
+Z19 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_object_defines.svh
+Z20 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_printer_defines.svh
+Z21 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_tlm_defines.svh
+Z22 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/tlm1/uvm_tlm_imps.svh
+Z23 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_sequence_defines.svh
+Z24 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_callback_defines.svh
+Z25 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_reg_defines.svh
+Z26 F/cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_deprecated_defines.svh
 F../src/cfg/axi4_types.sv
 F../src/cfg/axi4_agent_config.sv
 F../src/cfg/axi4_transaction.sv
@@ -91,17 +92,18 @@ R6
 R7
 R8
 R9
+R10
 vaxi4_sva
 R1
-R12
+R13
 !i10b 1
-!s100 16EaTzAcgO2Vfc4X:c1C]0
-IW<TYVWlcV4KXGL_AO<G^k1
+!s100 FMClbZiNNLddP7QB430hP1
+IdfGJM?CW;c4Bkg?ig]NfN3
 R2
 !s105 axi4_sva_sv_unit
 S1
 R0
-w1780498820
+R14
 8../src/sva/axi4_sva.sv
 F../src/sva/axi4_sva.sv
 L0 20
@@ -116,23 +118,22 @@ R6
 R7
 R8
 R9
-Xaxi4_test_pkg
 R10
-R1
+Xaxi4_test_pkg
 R11
-Z25 DXx4 work 8 axi4_pkg 0 22 O1okn?R=G1AX@O?FOD8E`3
+R1
 R12
+Z27 DXx4 work 8 axi4_pkg 0 22 PX3LH;HlTUDeDJ0>9ib7@1
+R13
 !i10b 1
 !s100 ^1@g0_>5KY^<<DXzanfKG2
-I^O=42P[1Tdl_S<;[>WFfW2
-V^O=42P[1Tdl_S<;[>WFfW2
+Ifac6C7KARSi4_a1^]RdFG0
+Vfac6C7KARSi4_a1^]RdFG0
 S1
 R0
 w1779961157
 8../src/axi4_test_pkg.sv
 F../src/axi4_test_pkg.sv
-R13
-R14
 R15
 R16
 R17
@@ -143,6 +144,8 @@ R21
 R22
 R23
 R24
+R25
+R26
 F../src/test/axi4_base_test.sv
 F../src/test/axi4_wr_rd_test.sv
 L0 12
@@ -157,32 +160,32 @@ R6
 R7
 R8
 R9
+R10
 Topt_tb_top
-!s110 1780498842
-V6I4cViT41>Nl39ePUh^UT3
+!s110 1780542586
+Va?WKiCL4?HeDc8A[l5F`Y0
 04 6 4 work tb_top fast 0
-o+acc -work work
-R9
+R7
+o+acc -work work -cover sbcet
+R10
 nopt_tb_top
 OL;O;10.6b;65
 vtb_top
 R1
-R11
-R25
-DXx4 work 13 axi4_test_pkg 0 22 ^O=42P[1Tdl_S<;[>WFfW2
 R12
+R27
+DXx4 work 13 axi4_test_pkg 0 22 fac6C7KARSi4_a1^]RdFG0
+R13
 !i10b 1
 !s100 I^bZGZ`SiI6DZKfFSKKn>1
-I=5;ANDY@A<Z5UKWN;mX@]3
+IkznC:ejO2gP5eL?Y`g?[B3
 R2
 !s105 tb_top_sv_unit
 S1
 R0
-w1780498138
+R14
 8../src/tb_top.sv
 F../src/tb_top.sv
-R13
-R14
 R15
 R16
 R17
@@ -193,6 +196,8 @@ R21
 R22
 R23
 R24
+R25
+R26
 L0 13
 R3
 r1
@@ -205,3 +210,4 @@ R6
 R7
 R8
 R9
+R10
