@@ -12,6 +12,7 @@
 ../src/mst/axi4_master_monitor.sv
 ../src/mst/axi4_master_sequencer.sv
 ../src/seq/axi4_base_sequence.sv
+../src/seq/axi4_outstanding_seq.sv
 ../src/seq/axi4_random_seq.sv
 ../src/seq/axi4_single_read_seq.sv
 ../src/seq/axi4_single_write_seq.sv
@@ -23,4 +24,6 @@
 ../src/sva/axi4_sva.sv
 ../src/tb_top.sv
 ../src/test/axi4_base_test.sv
+../src/test/axi4_outstanding_test.sv
+../src/test/axi4_random_test.sv
 ../src/test/axi4_wr_rd_test.sv
