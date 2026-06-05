@@ -1,0 +1,724 @@
+# vsim -c -coverage -sv_seed 34483712 "+UVM_TESTNAME=axi4_unaligned_test" "+UVM_VERBOSITY=UVM_HIGH" "+DUMP_VCD" -l ./report/logs/axi4_unaligned_test_run_7_seed_34483712.log -do "coverage save -onexit ./report/coverage/axi4_unaligned_test_run_7_seed_34483712.ucdb; run -all; quit -f" opt_tb_top 
+# Start time: 11:26:23 on Jun 05,2026
+# //  Questa Sim-64
+# //  Version 10.6b linux_x86_64 May 25 2017
+# //
+# //  Copyright 1991-2017 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.axi4_if(fast)
+# Loading mtiUvm.uvm_pkg
+# Loading work.axi4_pkg(fast)
+# Loading work.axi4_test_pkg(fast)
+# Loading work.tb_top(fast)
+# Loading work.axi4_if(fast)
+# Loading work.axi4_sva(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# Loading /cadtools/mentor/Questa_10.6b/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
+# coverage save -onexit ./report/coverage/axi4_unaligned_test_run_7_seed_34483712.ucdb
+#  run -all
+# ----------------------------------------------------------------
+# UVM-1.1d
+# (C) 2007-2013 Mentor Graphics Corporation
+# (C) 2007-2013 Cadence Design Systems, Inc.
+# (C) 2006-2013 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(215) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(217) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# UVM_INFO ../src/tb_top.sv(128) @ 0: reporter [TB_TOP] Virtual interface set in config_db
+# UVM_INFO @ 0: reporter [RNTST] Running test axi4_unaligned_test...
+# UVM_INFO ../src/tb_top.sv(142) @ 0: reporter [TB_TOP] Waveform VCD dumping enabled (axi4_vip.vcd)
+# UVM_INFO ../src/env/axi4_vip_env.sv(83) @ 0: uvm_test_top.env [axi4_vip_env] slave_vif not set - reusing master_vif (passthrough mode)
+# UVM_INFO ../src/env/axi4_vip_env.sv(93) @ 0: uvm_test_top.env [axi4_vip_env] Scoreboard created
+# UVM_INFO ../src/env/axi4_vip_env.sv(100) @ 0: uvm_test_top.env [axi4_vip_env] Coverage collectors created
+# UVM_INFO ../src/mst/axi4_master_agent.sv(69) @ 0: uvm_test_top.env.master_agent [axi4_master_agent] ACTIVE mode - driver + sequencer created
+# UVM_INFO ../src/slv/axi4_slave_agent.sv(82) @ 0: uvm_test_top.env.slave_agent [axi4_slave_agent] ACTIVE mode — ready_delay=[0:0] resp_delay=[0:0]
+# UVM_INFO ../src/env/axi4_vip_env.sv(116) @ 0: uvm_test_top.env [axi4_vip_env] Scoreboard connected: master_mon.ap -> scb, slave_mon.ap -> scb
+# UVM_INFO ../src/env/axi4_vip_env.sv(124) @ 0: uvm_test_top.env [axi4_vip_env] Coverage connected: master_mon.ap -> master_cov, slave_mon.ap -> slave_cov
+# UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+# ---------------------------------------------------------------
+# Name                       Type                     Size  Value
+# ---------------------------------------------------------------
+# uvm_test_top               axi4_unaligned_test      -     @473 
+#   env                      axi4_vip_env             -     @488 
+#     master_agent           axi4_master_agent        -     @503 
+#       drv                  axi4_master_driver       -     @567 
+#         rsp_port           uvm_analysis_port        -     @582 
+#         seq_item_port      uvm_seq_item_pull_port   -     @574 
+#       mon                  axi4_master_monitor      -     @559 
+#         ap                 uvm_analysis_port        -     @700 
+#       sqr                  axi4_master_sequencer    -     @590 
+#         rsp_export         uvm_analysis_export      -     @597 
+#         seq_item_export    uvm_seq_item_pull_imp    -     @691 
+#         arbitration_queue  array                    0     -    
+#         lock_queue         array                    0     -    
+#         num_last_reqs      integral                 32    'd1  
+#         num_last_rsps      integral                 32    'd1  
+#     master_cov             axi4_coverage            -     @524 
+#       analysis_imp         uvm_analysis_imp         -     @531 
+#     scb                    axi4_scoreboard          -     @517 
+#       master_export        uvm_analysis_imp_master  -     @714 
+#       slave_export         uvm_analysis_imp_slave   -     @722 
+#     slave_agent            axi4_slave_agent         -     @510 
+#       drv                  axi4_slave_driver        -     @753 
+#         rsp_port           uvm_analysis_port        -     @768 
+#         seq_item_port      uvm_seq_item_pull_port   -     @760 
+#       mon                  axi4_slave_monitor       -     @735 
+#         ap                 uvm_analysis_port        -     @890 
+#       sqr                  axi4_slave_sequencer     -     @776 
+#         rsp_export         uvm_analysis_export      -     @783 
+#         seq_item_export    uvm_seq_item_pull_imp    -     @877 
+#         arbitration_queue  array                    0     -    
+#         lock_queue         array                    0     -    
+#         num_last_reqs      integral                 32    'd1  
+#         num_last_rsps      integral                 32    'd1  
+#     slave_cov              axi4_coverage            -     @539 
+#       analysis_imp         uvm_analysis_imp         -     @546 
+# ---------------------------------------------------------------
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] End Of Elaboration
+# UVM_INFO ../src/test/axi4_unaligned_test.sv(24) @ 0: uvm_test_top [axi4_unaligned_test] Starting unaligned access test
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(25) @ 0: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] Starting unaligned access sequence: 40 transactions
+# UVM_INFO ../src/tb_top.sv(49) @ 95000: reporter [TOP_TB] Reset de-asserted
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(70) @ 95000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Reset deasserted - slave driver active
+# UVM_INFO ../src/mst/axi4_master_driver.sv(46) @ 95000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Reset deasserted - master driver active
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(77) @ 95000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Reset deasserted — monitor active
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(71) @ 95000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Reset deasserted — monitor active
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 95000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0xe  ADDR=0x7e750b2b  LEN=178
+# UVM_INFO ../src/mst/axi4_master_driver.sv(101) @ 95000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW -> W (sequential)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 115000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0xe ADDR=0x7e750b2b LEN=178 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 115000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0xe ADDR=0x7e750b2b LEN=178
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 115000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0xe ADDR=0x7e750b2b LEN=178
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 3695000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0xe ADDR=0x7e750b2b 179 beats
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 3695000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0xe ADDR=0x7e750b2b 179 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 3725000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 3725000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0xe ADDR=0x7e750b2b RESP=AXI4_RESP_OKAY  179 beats processed
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 3725000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0xe ADDR=0x7e750b2b RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 3725000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0xe ADDR=0x7e750b2b LEN=178
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 3725000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0xe ADDR=0x7e750b2b RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 3725000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0xe ADDR=0x7e750b2b LEN=178
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 3725000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #1: ID=0xe ADDR=0x7e750b2b LEN=178
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 3725000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [1/40] Unaligned AXI4_WRITE: ADDR=0x7e750b2b SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_INCR (AlignmentOffset=3)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 3725000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0xa  ADDR=0x90ff4b3f  LEN=41
+# UVM_INFO ../src/mst/axi4_master_driver.sv(106) @ 3725000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: W -> AW (W first)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 3775000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0xa ADDR=0x90ff4b3f LEN=41 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 3775000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0xa ADDR=0x90ff4b3f LEN=41
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 3775000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0xa ADDR=0x90ff4b3f LEN=41
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 4565000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0xa ADDR=0x90ff4b3f 42 beats
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 4565000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0xa ADDR=0x90ff4b3f 42 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 4595000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 4595000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0xa ADDR=0x90ff4b3f RESP=AXI4_RESP_OKAY  42 beats processed
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 4595000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0xa ADDR=0x90ff4b3f RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 4595000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0xa ADDR=0x90ff4b3f LEN=41
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 4595000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0xa ADDR=0x90ff4b3f RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 4595000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0xa ADDR=0x90ff4b3f LEN=41
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 4595000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #2: ID=0xa ADDR=0x90ff4b3f LEN=41
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 4595000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [2/40] Unaligned AXI4_WRITE: ADDR=0x90ff4b3f SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_INCR (AlignmentOffset=3)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 4595000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0x1  ADDR=0x3b081ad9  LEN=1
+# UVM_INFO ../src/mst/axi4_master_driver.sv(94) @ 4595000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW || W (parallel)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 4625000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0x1 ADDR=0x3b081ad9 LEN=1 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 4625000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0x1 ADDR=0x3b081ad9 LEN=1
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 4625000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0x1 ADDR=0x3b081ad9 LEN=1
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 4635000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0x1 ADDR=0x3b081ad9 2 beats
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 4635000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0x1 ADDR=0x3b081ad9 2 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 4665000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 4665000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0x1 ADDR=0x3b081ad9 RESP=AXI4_RESP_OKAY  2 beats processed
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 4665000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0x1 ADDR=0x3b081ad9 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 4665000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0x1 ADDR=0x3b081ad9 LEN=1
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 4665000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0x1 ADDR=0x3b081ad9 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 4665000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0x1 ADDR=0x3b081ad9 LEN=1
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 4665000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #3: ID=0x1 ADDR=0x3b081ad9 LEN=1
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 4665000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [3/40] Unaligned AXI4_WRITE: ADDR=0x3b081ad9 SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_FIXED (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 4665000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0xf  ADDR=0xc7f52b52  LEN=165
+# UVM_INFO ../src/mst/axi4_master_driver.sv(106) @ 4665000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: W -> AW (W first)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 4725000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0xf ADDR=0xc7f52b52 LEN=165 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 4725000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0xf ADDR=0xc7f52b52 LEN=165
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 4725000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0xf ADDR=0xc7f52b52 LEN=165
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 7985000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0xf ADDR=0xc7f52b52 166 beats
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 7985000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0xf ADDR=0xc7f52b52 166 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 8015000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 8015000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0xf ADDR=0xc7f52b52 RESP=AXI4_RESP_OKAY  166 beats processed
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 8015000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0xf ADDR=0xc7f52b52 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 8015000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0xf ADDR=0xc7f52b52 LEN=165
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 8015000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0xf ADDR=0xc7f52b52 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 8015000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0xf ADDR=0xc7f52b52 LEN=165
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 8015000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #4: ID=0xf ADDR=0xc7f52b52 LEN=165
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 8015000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [4/40] Unaligned AXI4_WRITE: ADDR=0xc7f52b52 SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_INCR (AlignmentOffset=2)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 8015000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0xf  ADDR=0xb9af9335  LEN=240
+# UVM_INFO ../src/mst/axi4_master_driver.sv(106) @ 8015000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: W -> AW (W first)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 8085000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0xf ADDR=0xb9af9335 LEN=240 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 8085000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0xf ADDR=0xb9af9335 LEN=240
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 8085000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0xf ADDR=0xb9af9335 LEN=240
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 12835000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0xf ADDR=0xb9af9335 241 beats
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 12835000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0xf ADDR=0xb9af9335 241 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 12865000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 12865000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0xf ADDR=0xb9af9335 RESP=AXI4_RESP_OKAY  241 beats processed
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 12865000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0xf ADDR=0xb9af9335 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 12865000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0xf ADDR=0xb9af9335 LEN=240
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 12865000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0xf ADDR=0xb9af9335 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 12865000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0xf ADDR=0xb9af9335 LEN=240
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 12865000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #5: ID=0xf ADDR=0xb9af9335 LEN=240
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 12865000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [5/40] Unaligned AXI4_WRITE: ADDR=0xb9af9335 SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 12865000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_READ  ID=0x2  ADDR=0x56263b9d  LEN=158
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(300) @ 12895000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AR received: ID=0x2 ADDR=0x56263b9d LEN=158 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(224) @ 12895000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AR received: ID=0x2 ADDR=0x56263b9d LEN=158
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(246) @ 12895000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AR observed: ID=0x2 ADDR=0x56263b9d LEN=158
+# UVM_INFO ../src/mst/axi4_master_driver.sv(254) @ 16075000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Read complete: 159 beats received
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(349) @ 16075000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Read complete: ID=0x2 ADDR=0x56263b9d RESP=AXI4_RESP_OKAY  159 beats sent
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(287) @ 16075000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Read data sent: ID=0x2 ADDR=0x56263b9d 159 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 16075000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_READ received: ID=0x2 ADDR=0x56263b9d LEN=158
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(314) @ 16075000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Read complete: ID=0x2 ADDR=0x56263b9d 159 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 16075000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_READ received: ID=0x2 ADDR=0x56263b9d LEN=158
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 16075000: uvm_test_top.env.scb [axi4_scoreboard] [READ] MATCH #6: ID=0x2 ADDR=0x56263b9d LEN=158
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 16075000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [6/40] Unaligned AXI4_READ: ADDR=0x56263b9d SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 16075000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0xd  ADDR=0x154ec297  LEN=47
+# UVM_INFO ../src/mst/axi4_master_driver.sv(106) @ 16075000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: W -> AW (W first)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 16125000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0xd ADDR=0x154ec297 LEN=47 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 16125000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0xd ADDR=0x154ec297 LEN=47
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 16125000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0xd ADDR=0x154ec297 LEN=47
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 17035000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0xd ADDR=0x154ec297 48 beats
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 17035000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0xd ADDR=0x154ec297 48 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 17065000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 17065000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0xd ADDR=0x154ec297 RESP=AXI4_RESP_OKAY  48 beats processed
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 17065000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0xd ADDR=0x154ec297 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 17065000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0xd ADDR=0x154ec297 LEN=47
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 17065000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0xd ADDR=0x154ec297 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 17065000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0xd ADDR=0x154ec297 LEN=47
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 17065000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #7: ID=0xd ADDR=0x154ec297 LEN=47
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 17065000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [7/40] Unaligned AXI4_WRITE: ADDR=0x154ec297 SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 17065000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0x1  ADDR=0x4fd9e0e6  LEN=31
+# UVM_INFO ../src/mst/axi4_master_driver.sv(94) @ 17065000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW || W (parallel)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 17095000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0x1 ADDR=0x4fd9e0e6 LEN=31 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 17095000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0x1 ADDR=0x4fd9e0e6 LEN=31
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 17095000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0x1 ADDR=0x4fd9e0e6 LEN=31
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 17705000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0x1 ADDR=0x4fd9e0e6 32 beats
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 17705000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0x1 ADDR=0x4fd9e0e6 32 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 17735000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 17735000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0x1 ADDR=0x4fd9e0e6 RESP=AXI4_RESP_OKAY  32 beats processed
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 17735000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0x1 ADDR=0x4fd9e0e6 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 17735000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0x1 ADDR=0x4fd9e0e6 LEN=31
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 17735000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0x1 ADDR=0x4fd9e0e6 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 17735000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0x1 ADDR=0x4fd9e0e6 LEN=31
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 17735000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #8: ID=0x1 ADDR=0x4fd9e0e6 LEN=31
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 17735000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [8/40] Unaligned AXI4_WRITE: ADDR=0x4fd9e0e6 SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_INCR (AlignmentOffset=2)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 17735000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0x9  ADDR=0x43fd041d  LEN=29
+# UVM_INFO ../src/mst/axi4_master_driver.sv(106) @ 17735000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: W -> AW (W first)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 17785000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0x9 ADDR=0x43fd041d LEN=29 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 17785000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0x9 ADDR=0x43fd041d LEN=29
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 17785000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0x9 ADDR=0x43fd041d LEN=29
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 18335000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0x9 ADDR=0x43fd041d 30 beats
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 18335000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0x9 ADDR=0x43fd041d 30 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 18365000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 18365000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0x9 ADDR=0x43fd041d RESP=AXI4_RESP_OKAY  30 beats processed
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 18365000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0x9 ADDR=0x43fd041d RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 18365000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0x9 ADDR=0x43fd041d LEN=29
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 18365000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0x9 ADDR=0x43fd041d RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 18365000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0x9 ADDR=0x43fd041d LEN=29
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 18365000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #9: ID=0x9 ADDR=0x43fd041d LEN=29
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 18365000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [9/40] Unaligned AXI4_WRITE: ADDR=0x43fd041d SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 18365000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0x8  ADDR=0x37808a23  LEN=206
+# UVM_INFO ../src/mst/axi4_master_driver.sv(94) @ 18365000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW || W (parallel)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 18395000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0x8 ADDR=0x37808a23 LEN=206 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 18395000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0x8 ADDR=0x37808a23 LEN=206
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 18395000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0x8 ADDR=0x37808a23 LEN=206
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 22505000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0x8 ADDR=0x37808a23 207 beats
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 22505000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0x8 ADDR=0x37808a23 207 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 22535000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 22535000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0x8 ADDR=0x37808a23 RESP=AXI4_RESP_OKAY  207 beats processed
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 22535000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0x8 ADDR=0x37808a23 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 22535000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0x8 ADDR=0x37808a23 LEN=206
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 22535000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0x8 ADDR=0x37808a23 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 22535000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0x8 ADDR=0x37808a23 LEN=206
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 22535000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #10: ID=0x8 ADDR=0x37808a23 LEN=206
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 22535000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [10/40] Unaligned AXI4_WRITE: ADDR=0x37808a23 SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 22535000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0x3  ADDR=0x600c06e1  LEN=143
+# UVM_INFO ../src/mst/axi4_master_driver.sv(94) @ 22535000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW || W (parallel)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 22565000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0x3 ADDR=0x600c06e1 LEN=143 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 22565000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0x3 ADDR=0x600c06e1 LEN=143
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 22565000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0x3 ADDR=0x600c06e1 LEN=143
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 25415000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0x3 ADDR=0x600c06e1 144 beats
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 25415000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0x3 ADDR=0x600c06e1 144 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 25445000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 25445000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0x3 ADDR=0x600c06e1 RESP=AXI4_RESP_OKAY  144 beats processed
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 25445000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0x3 ADDR=0x600c06e1 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 25445000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0x3 ADDR=0x600c06e1 LEN=143
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 25445000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0x3 ADDR=0x600c06e1 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 25445000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0x3 ADDR=0x600c06e1 LEN=143
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 25445000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #11: ID=0x3 ADDR=0x600c06e1 LEN=143
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 25445000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [11/40] Unaligned AXI4_WRITE: ADDR=0x600c06e1 SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 25445000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0x1  ADDR=0xb7e69536  LEN=242
+# UVM_INFO ../src/mst/axi4_master_driver.sv(106) @ 25445000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: W -> AW (W first)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 25505000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0x1 ADDR=0xb7e69536 LEN=242 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 25505000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0x1 ADDR=0xb7e69536 LEN=242
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 25505000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0x1 ADDR=0xb7e69536 LEN=242
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 30305000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0x1 ADDR=0xb7e69536 243 beats
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 30305000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0x1 ADDR=0xb7e69536 243 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 30335000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 30335000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0x1 ADDR=0xb7e69536 RESP=AXI4_RESP_OKAY  243 beats processed
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 30335000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0x1 ADDR=0xb7e69536 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 30335000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0x1 ADDR=0xb7e69536 LEN=242
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 30335000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0x1 ADDR=0xb7e69536 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 30335000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0x1 ADDR=0xb7e69536 LEN=242
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 30335000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #12: ID=0x1 ADDR=0xb7e69536 LEN=242
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 30335000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [12/40] Unaligned AXI4_WRITE: ADDR=0xb7e69536 SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_INCR (AlignmentOffset=2)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 30335000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0x7  ADDR=0x829565b3  LEN=67
+# UVM_INFO ../src/mst/axi4_master_driver.sv(94) @ 30335000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW || W (parallel)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 30365000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0x7 ADDR=0x829565b3 LEN=67 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 30365000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0x7 ADDR=0x829565b3 LEN=67
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 30365000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0x7 ADDR=0x829565b3 LEN=67
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 31695000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0x7 ADDR=0x829565b3 68 beats
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 31695000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0x7 ADDR=0x829565b3 68 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 31725000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 31725000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0x7 ADDR=0x829565b3 RESP=AXI4_RESP_OKAY  68 beats processed
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 31725000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0x7 ADDR=0x829565b3 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 31725000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0x7 ADDR=0x829565b3 LEN=67
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 31725000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0x7 ADDR=0x829565b3 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 31725000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0x7 ADDR=0x829565b3 LEN=67
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 31725000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #13: ID=0x7 ADDR=0x829565b3 LEN=67
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 31725000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [13/40] Unaligned AXI4_WRITE: ADDR=0x829565b3 SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 31725000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0xb  ADDR=0x47310465  LEN=34
+# UVM_INFO ../src/mst/axi4_master_driver.sv(106) @ 31725000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: W -> AW (W first)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 31785000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0xb ADDR=0x47310465 LEN=34 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 31785000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0xb ADDR=0x47310465 LEN=34
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 31785000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0xb ADDR=0x47310465 LEN=34
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 32425000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0xb ADDR=0x47310465 35 beats
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 32425000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0xb ADDR=0x47310465 35 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 32455000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 32455000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0xb ADDR=0x47310465 RESP=AXI4_RESP_OKAY  35 beats processed
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 32455000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0xb ADDR=0x47310465 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 32455000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0xb ADDR=0x47310465 LEN=34
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 32455000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0xb ADDR=0x47310465 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 32455000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0xb ADDR=0x47310465 LEN=34
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 32455000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #14: ID=0xb ADDR=0x47310465 LEN=34
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 32455000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [14/40] Unaligned AXI4_WRITE: ADDR=0x47310465 SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 32455000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0x0  ADDR=0x94a8a5bb  LEN=3
+# UVM_INFO ../src/mst/axi4_master_driver.sv(101) @ 32455000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW -> W (sequential)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 32485000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0x0 ADDR=0x94a8a5bb LEN=3 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 32485000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0x0 ADDR=0x94a8a5bb LEN=3
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 32485000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0x0 ADDR=0x94a8a5bb LEN=3
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 32565000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0x0 ADDR=0x94a8a5bb 4 beats
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 32565000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0x0 ADDR=0x94a8a5bb 4 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 32595000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 32595000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0x0 ADDR=0x94a8a5bb RESP=AXI4_RESP_OKAY  4 beats processed
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 32595000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0x0 ADDR=0x94a8a5bb RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 32595000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0x0 ADDR=0x94a8a5bb LEN=3
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 32595000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0x0 ADDR=0x94a8a5bb RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 32595000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0x0 ADDR=0x94a8a5bb LEN=3
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 32595000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #15: ID=0x0 ADDR=0x94a8a5bb LEN=3
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 32595000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [15/40] Unaligned AXI4_WRITE: ADDR=0x94a8a5bb SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 32595000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_READ  ID=0x3  ADDR=0x63daf5f5  LEN=252
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(300) @ 32625000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AR received: ID=0x3 ADDR=0x63daf5f5 LEN=252 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(246) @ 32625000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AR observed: ID=0x3 ADDR=0x63daf5f5 LEN=252
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(224) @ 32625000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AR received: ID=0x3 ADDR=0x63daf5f5 LEN=252
+# UVM_INFO ../src/mst/axi4_master_driver.sv(254) @ 37685000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Read complete: 253 beats received
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(349) @ 37685000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Read complete: ID=0x3 ADDR=0x63daf5f5 RESP=AXI4_RESP_OKAY  253 beats sent
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(314) @ 37685000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Read complete: ID=0x3 ADDR=0x63daf5f5 253 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 37685000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_READ received: ID=0x3 ADDR=0x63daf5f5 LEN=252
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(287) @ 37685000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Read data sent: ID=0x3 ADDR=0x63daf5f5 253 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 37685000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_READ received: ID=0x3 ADDR=0x63daf5f5 LEN=252
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 37685000: uvm_test_top.env.scb [axi4_scoreboard] [READ] MATCH #16: ID=0x3 ADDR=0x63daf5f5 LEN=252
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 37685000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [16/40] Unaligned AXI4_READ: ADDR=0x63daf5f5 SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 37685000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0x5  ADDR=0x968a9825  LEN=190
+# UVM_INFO ../src/mst/axi4_master_driver.sv(94) @ 37685000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW || W (parallel)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 37715000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0x5 ADDR=0x968a9825 LEN=190 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 37715000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0x5 ADDR=0x968a9825 LEN=190
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 37715000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0x5 ADDR=0x968a9825 LEN=190
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 41505000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0x5 ADDR=0x968a9825 191 beats
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 41505000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0x5 ADDR=0x968a9825 191 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 41535000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 41535000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0x5 ADDR=0x968a9825 RESP=AXI4_RESP_OKAY  191 beats processed
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 41535000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0x5 ADDR=0x968a9825 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 41535000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0x5 ADDR=0x968a9825 LEN=190
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 41535000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0x5 ADDR=0x968a9825 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 41535000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0x5 ADDR=0x968a9825 LEN=190
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 41535000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #17: ID=0x5 ADDR=0x968a9825 LEN=190
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 41535000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [17/40] Unaligned AXI4_WRITE: ADDR=0x968a9825 SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 41535000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_READ  ID=0x5  ADDR=0x6b5ee8c1  LEN=46
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(300) @ 41565000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AR received: ID=0x5 ADDR=0x6b5ee8c1 LEN=46 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(246) @ 41565000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AR observed: ID=0x5 ADDR=0x6b5ee8c1 LEN=46
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(224) @ 41565000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AR received: ID=0x5 ADDR=0x6b5ee8c1 LEN=46
+# UVM_INFO ../src/mst/axi4_master_driver.sv(254) @ 42505000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Read complete: 47 beats received
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(349) @ 42505000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Read complete: ID=0x5 ADDR=0x6b5ee8c1 RESP=AXI4_RESP_EXOKAY  47 beats sent
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(314) @ 42505000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Read complete: ID=0x5 ADDR=0x6b5ee8c1 47 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 42505000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_READ received: ID=0x5 ADDR=0x6b5ee8c1 LEN=46
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(287) @ 42505000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Read data sent: ID=0x5 ADDR=0x6b5ee8c1 47 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 42505000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_READ received: ID=0x5 ADDR=0x6b5ee8c1 LEN=46
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 42505000: uvm_test_top.env.scb [axi4_scoreboard] [READ] MATCH #18: ID=0x5 ADDR=0x6b5ee8c1 LEN=46
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 42505000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [18/40] Unaligned AXI4_READ: ADDR=0x6b5ee8c1 SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 42505000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_READ  ID=0xc  ADDR=0x171bd93f  LEN=5
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(300) @ 42535000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AR received: ID=0xc ADDR=0x171bd93f LEN=5 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(224) @ 42535000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AR received: ID=0xc ADDR=0x171bd93f LEN=5
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(246) @ 42535000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AR observed: ID=0xc ADDR=0x171bd93f LEN=5
+# UVM_INFO ../src/mst/axi4_master_driver.sv(254) @ 42655000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Read complete: 6 beats received
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(349) @ 42655000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Read complete: ID=0xc ADDR=0x171bd93f RESP=AXI4_RESP_EXOKAY  6 beats sent
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(287) @ 42655000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Read data sent: ID=0xc ADDR=0x171bd93f 6 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 42655000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_READ received: ID=0xc ADDR=0x171bd93f LEN=5
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(314) @ 42655000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Read complete: ID=0xc ADDR=0x171bd93f 6 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 42655000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_READ received: ID=0xc ADDR=0x171bd93f LEN=5
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 42655000: uvm_test_top.env.scb [axi4_scoreboard] [READ] MATCH #19: ID=0xc ADDR=0x171bd93f LEN=5
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 42655000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [19/40] Unaligned AXI4_READ: ADDR=0x171bd93f SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_INCR (AlignmentOffset=3)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 42655000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0xd  ADDR=0x3b87d593  LEN=56
+# UVM_INFO ../src/mst/axi4_master_driver.sv(106) @ 42655000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: W -> AW (W first)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 42715000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0xd ADDR=0x3b87d593 LEN=56 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 42715000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0xd ADDR=0x3b87d593 LEN=56
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 42715000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0xd ADDR=0x3b87d593 LEN=56
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 43795000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0xd ADDR=0x3b87d593 57 beats
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 43795000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0xd ADDR=0x3b87d593 57 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 43825000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 43825000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0xd ADDR=0x3b87d593 RESP=AXI4_RESP_OKAY  57 beats processed
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 43825000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0xd ADDR=0x3b87d593 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 43825000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0xd ADDR=0x3b87d593 LEN=56
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 43825000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0xd ADDR=0x3b87d593 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 43825000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0xd ADDR=0x3b87d593 LEN=56
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 43825000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #20: ID=0xd ADDR=0x3b87d593 LEN=56
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 43825000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [20/40] Unaligned AXI4_WRITE: ADDR=0x3b87d593 SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 43825000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_READ  ID=0x2  ADDR=0xa0af39f9  LEN=73
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(300) @ 43855000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AR received: ID=0x2 ADDR=0xa0af39f9 LEN=73 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(224) @ 43855000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AR received: ID=0x2 ADDR=0xa0af39f9 LEN=73
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(246) @ 43855000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AR observed: ID=0x2 ADDR=0xa0af39f9 LEN=73
+# UVM_INFO ../src/mst/axi4_master_driver.sv(254) @ 45335000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Read complete: 74 beats received
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(349) @ 45335000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Read complete: ID=0x2 ADDR=0xa0af39f9 RESP=AXI4_RESP_OKAY  74 beats sent
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(287) @ 45335000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Read data sent: ID=0x2 ADDR=0xa0af39f9 74 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 45335000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_READ received: ID=0x2 ADDR=0xa0af39f9 LEN=73
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(314) @ 45335000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Read complete: ID=0x2 ADDR=0xa0af39f9 74 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 45335000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_READ received: ID=0x2 ADDR=0xa0af39f9 LEN=73
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 45335000: uvm_test_top.env.scb [axi4_scoreboard] [READ] MATCH #21: ID=0x2 ADDR=0xa0af39f9 LEN=73
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 45335000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [21/40] Unaligned AXI4_READ: ADDR=0xa0af39f9 SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 45335000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_READ  ID=0x3  ADDR=0xcd3aae2d  LEN=44
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(300) @ 45365000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AR received: ID=0x3 ADDR=0xcd3aae2d LEN=44 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(246) @ 45365000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AR observed: ID=0x3 ADDR=0xcd3aae2d LEN=44
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(224) @ 45365000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AR received: ID=0x3 ADDR=0xcd3aae2d LEN=44
+# UVM_INFO ../src/mst/axi4_master_driver.sv(254) @ 46265000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Read complete: 45 beats received
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(349) @ 46265000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Read complete: ID=0x3 ADDR=0xcd3aae2d RESP=AXI4_RESP_EXOKAY  45 beats sent
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(314) @ 46265000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Read complete: ID=0x3 ADDR=0xcd3aae2d 45 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 46265000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_READ received: ID=0x3 ADDR=0xcd3aae2d LEN=44
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(287) @ 46265000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Read data sent: ID=0x3 ADDR=0xcd3aae2d 45 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 46265000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_READ received: ID=0x3 ADDR=0xcd3aae2d LEN=44
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 46265000: uvm_test_top.env.scb [axi4_scoreboard] [READ] MATCH #22: ID=0x3 ADDR=0xcd3aae2d LEN=44
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 46265000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [22/40] Unaligned AXI4_READ: ADDR=0xcd3aae2d SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 46265000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0xe  ADDR=0x9f21f055  LEN=163
+# UVM_INFO ../src/mst/axi4_master_driver.sv(94) @ 46265000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW || W (parallel)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 46295000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0xe ADDR=0x9f21f055 LEN=163 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 46295000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0xe ADDR=0x9f21f055 LEN=163
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 46295000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0xe ADDR=0x9f21f055 LEN=163
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 49545000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0xe ADDR=0x9f21f055 164 beats
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 49545000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0xe ADDR=0x9f21f055 164 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 49575000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 49575000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0xe ADDR=0x9f21f055 RESP=AXI4_RESP_OKAY  164 beats processed
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 49575000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0xe ADDR=0x9f21f055 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 49575000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0xe ADDR=0x9f21f055 LEN=163
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 49575000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0xe ADDR=0x9f21f055 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 49575000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0xe ADDR=0x9f21f055 LEN=163
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 49575000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #23: ID=0xe ADDR=0x9f21f055 LEN=163
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 49575000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [23/40] Unaligned AXI4_WRITE: ADDR=0x9f21f055 SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 49575000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0xf  ADDR=0x2b4cb15d  LEN=58
+# UVM_INFO ../src/mst/axi4_master_driver.sv(94) @ 49575000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW || W (parallel)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 49605000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0xf ADDR=0x2b4cb15d LEN=58 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 49605000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0xf ADDR=0x2b4cb15d LEN=58
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 49605000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0xf ADDR=0x2b4cb15d LEN=58
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 50755000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0xf ADDR=0x2b4cb15d 59 beats
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 50755000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0xf ADDR=0x2b4cb15d 59 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 50785000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 50785000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0xf ADDR=0x2b4cb15d RESP=AXI4_RESP_OKAY  59 beats processed
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 50785000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0xf ADDR=0x2b4cb15d RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 50785000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0xf ADDR=0x2b4cb15d LEN=58
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 50785000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0xf ADDR=0x2b4cb15d RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 50785000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0xf ADDR=0x2b4cb15d LEN=58
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 50785000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #24: ID=0xf ADDR=0x2b4cb15d LEN=58
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 50785000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [24/40] Unaligned AXI4_WRITE: ADDR=0x2b4cb15d SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 50785000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0x8  ADDR=0x4ffc5f73  LEN=207
+# UVM_INFO ../src/mst/axi4_master_driver.sv(94) @ 50785000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW || W (parallel)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 50815000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0x8 ADDR=0x4ffc5f73 LEN=207 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 50815000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0x8 ADDR=0x4ffc5f73 LEN=207
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 50815000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0x8 ADDR=0x4ffc5f73 LEN=207
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 54945000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0x8 ADDR=0x4ffc5f73 208 beats
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 54945000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0x8 ADDR=0x4ffc5f73 208 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 54975000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 54975000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0x8 ADDR=0x4ffc5f73 RESP=AXI4_RESP_OKAY  208 beats processed
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 54975000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0x8 ADDR=0x4ffc5f73 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 54975000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0x8 ADDR=0x4ffc5f73 LEN=207
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 54975000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0x8 ADDR=0x4ffc5f73 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 54975000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0x8 ADDR=0x4ffc5f73 LEN=207
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 54975000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #25: ID=0x8 ADDR=0x4ffc5f73 LEN=207
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 54975000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [25/40] Unaligned AXI4_WRITE: ADDR=0x4ffc5f73 SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 54975000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0xa  ADDR=0x6f705cc1  LEN=6
+# UVM_INFO ../src/mst/axi4_master_driver.sv(94) @ 54975000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW || W (parallel)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 55005000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0xa ADDR=0x6f705cc1 LEN=6 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 55005000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0xa ADDR=0x6f705cc1 LEN=6
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 55005000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0xa ADDR=0x6f705cc1 LEN=6
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 55115000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0xa ADDR=0x6f705cc1 7 beats
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 55115000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0xa ADDR=0x6f705cc1 7 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 55145000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 55145000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0xa ADDR=0x6f705cc1 RESP=AXI4_RESP_OKAY  7 beats processed
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 55145000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0xa ADDR=0x6f705cc1 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 55145000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0xa ADDR=0x6f705cc1 LEN=6
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 55145000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0xa ADDR=0x6f705cc1 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 55145000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0xa ADDR=0x6f705cc1 LEN=6
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 55145000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #26: ID=0xa ADDR=0x6f705cc1 LEN=6
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 55145000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [26/40] Unaligned AXI4_WRITE: ADDR=0x6f705cc1 SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 55145000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0x5  ADDR=0xaa2691a5  LEN=183
+# UVM_INFO ../src/mst/axi4_master_driver.sv(94) @ 55145000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW || W (parallel)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 55175000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0x5 ADDR=0xaa2691a5 LEN=183 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 55175000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0x5 ADDR=0xaa2691a5 LEN=183
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 55175000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0x5 ADDR=0xaa2691a5 LEN=183
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 58825000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0x5 ADDR=0xaa2691a5 184 beats
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 58825000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0x5 ADDR=0xaa2691a5 184 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 58855000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 58855000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0x5 ADDR=0xaa2691a5 RESP=AXI4_RESP_OKAY  184 beats processed
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 58855000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0x5 ADDR=0xaa2691a5 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 58855000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0x5 ADDR=0xaa2691a5 LEN=183
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 58855000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0x5 ADDR=0xaa2691a5 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 58855000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0x5 ADDR=0xaa2691a5 LEN=183
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 58855000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #27: ID=0x5 ADDR=0xaa2691a5 LEN=183
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 58855000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [27/40] Unaligned AXI4_WRITE: ADDR=0xaa2691a5 SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 58855000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0x7  ADDR=0x4199d952  LEN=14
+# UVM_INFO ../src/mst/axi4_master_driver.sv(94) @ 58855000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW || W (parallel)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 58885000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0x7 ADDR=0x4199d952 LEN=14 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 58885000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0x7 ADDR=0x4199d952 LEN=14
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 58885000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0x7 ADDR=0x4199d952 LEN=14
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 59155000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0x7 ADDR=0x4199d952 15 beats
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 59155000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0x7 ADDR=0x4199d952 15 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 59185000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 59185000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0x7 ADDR=0x4199d952 RESP=AXI4_RESP_OKAY  15 beats processed
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 59185000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0x7 ADDR=0x4199d952 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 59185000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0x7 ADDR=0x4199d952 LEN=14
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 59185000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0x7 ADDR=0x4199d952 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 59185000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0x7 ADDR=0x4199d952 LEN=14
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 59185000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #28: ID=0x7 ADDR=0x4199d952 LEN=14
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 59185000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [28/40] Unaligned AXI4_WRITE: ADDR=0x4199d952 SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_FIXED (AlignmentOffset=2)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 59185000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_READ  ID=0xb  ADDR=0x8dea4fe1  LEN=1
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(300) @ 59215000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AR received: ID=0xb ADDR=0x8dea4fe1 LEN=1 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(224) @ 59215000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AR received: ID=0xb ADDR=0x8dea4fe1 LEN=1
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(246) @ 59215000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AR observed: ID=0xb ADDR=0x8dea4fe1 LEN=1
+# UVM_INFO ../src/mst/axi4_master_driver.sv(254) @ 59255000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Read complete: 2 beats received
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(349) @ 59255000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Read complete: ID=0xb ADDR=0x8dea4fe1 RESP=AXI4_RESP_EXOKAY  2 beats sent
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(287) @ 59255000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Read data sent: ID=0xb ADDR=0x8dea4fe1 2 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 59255000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_READ received: ID=0xb ADDR=0x8dea4fe1 LEN=1
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(314) @ 59255000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Read complete: ID=0xb ADDR=0x8dea4fe1 2 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 59255000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_READ received: ID=0xb ADDR=0x8dea4fe1 LEN=1
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 59255000: uvm_test_top.env.scb [axi4_scoreboard] [READ] MATCH #29: ID=0xb ADDR=0x8dea4fe1 LEN=1
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 59255000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [29/40] Unaligned AXI4_READ: ADDR=0x8dea4fe1 SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 59255000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0xb  ADDR=0x9b259b2f  LEN=222
+# UVM_INFO ../src/mst/axi4_master_driver.sv(94) @ 59255000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW || W (parallel)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 59285000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0xb ADDR=0x9b259b2f LEN=222 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 59285000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0xb ADDR=0x9b259b2f LEN=222
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 59285000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0xb ADDR=0x9b259b2f LEN=222
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 63715000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0xb ADDR=0x9b259b2f 223 beats
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 63715000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0xb ADDR=0x9b259b2f 223 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 63745000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 63745000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0xb ADDR=0x9b259b2f RESP=AXI4_RESP_OKAY  223 beats processed
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 63745000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0xb ADDR=0x9b259b2f RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 63745000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0xb ADDR=0x9b259b2f LEN=222
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 63745000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0xb ADDR=0x9b259b2f RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 63745000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0xb ADDR=0x9b259b2f LEN=222
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 63745000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #30: ID=0xb ADDR=0x9b259b2f LEN=222
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 63745000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [30/40] Unaligned AXI4_WRITE: ADDR=0x9b259b2f SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_INCR (AlignmentOffset=3)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 63745000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0xa  ADDR=0x06cdadcd  LEN=32
+# UVM_INFO ../src/mst/axi4_master_driver.sv(101) @ 63745000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW -> W (sequential)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 63775000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0xa ADDR=0x06cdadcd LEN=32 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 63775000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0xa ADDR=0x06cdadcd LEN=32
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 63775000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0xa ADDR=0x06cdadcd LEN=32
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 64435000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0xa ADDR=0x06cdadcd 33 beats
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 64435000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0xa ADDR=0x06cdadcd 33 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 64465000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 64465000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0xa ADDR=0x06cdadcd RESP=AXI4_RESP_OKAY  33 beats processed
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 64465000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0xa ADDR=0x06cdadcd RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 64465000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0xa ADDR=0x06cdadcd LEN=32
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 64465000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0xa ADDR=0x06cdadcd RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 64465000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0xa ADDR=0x06cdadcd LEN=32
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 64465000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #31: ID=0xa ADDR=0x06cdadcd LEN=32
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 64465000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [31/40] Unaligned AXI4_WRITE: ADDR=0x06cdadcd SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 64465000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_READ  ID=0x3  ADDR=0x8094d8e7  LEN=172
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(300) @ 64495000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AR received: ID=0x3 ADDR=0x8094d8e7 LEN=172 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(224) @ 64495000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AR received: ID=0x3 ADDR=0x8094d8e7 LEN=172
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(246) @ 64495000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AR observed: ID=0x3 ADDR=0x8094d8e7 LEN=172
+# UVM_INFO ../src/mst/axi4_master_driver.sv(254) @ 67955000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Read complete: 173 beats received
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(349) @ 67955000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Read complete: ID=0x3 ADDR=0x8094d8e7 RESP=AXI4_RESP_EXOKAY  173 beats sent
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(287) @ 67955000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Read data sent: ID=0x3 ADDR=0x8094d8e7 173 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 67955000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_READ received: ID=0x3 ADDR=0x8094d8e7 LEN=172
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(314) @ 67955000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Read complete: ID=0x3 ADDR=0x8094d8e7 173 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 67955000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_READ received: ID=0x3 ADDR=0x8094d8e7 LEN=172
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 67955000: uvm_test_top.env.scb [axi4_scoreboard] [READ] MATCH #32: ID=0x3 ADDR=0x8094d8e7 LEN=172
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 67955000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [32/40] Unaligned AXI4_READ: ADDR=0x8094d8e7 SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 67955000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0xd  ADDR=0x29ee3d6a  LEN=38
+# UVM_INFO ../src/mst/axi4_master_driver.sv(101) @ 67955000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW -> W (sequential)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 67985000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0xd ADDR=0x29ee3d6a LEN=38 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 67985000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0xd ADDR=0x29ee3d6a LEN=38
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 67985000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0xd ADDR=0x29ee3d6a LEN=38
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 68765000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0xd ADDR=0x29ee3d6a 39 beats
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 68765000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0xd ADDR=0x29ee3d6a 39 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 68795000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 68795000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0xd ADDR=0x29ee3d6a RESP=AXI4_RESP_OKAY  39 beats processed
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 68795000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0xd ADDR=0x29ee3d6a RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 68795000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0xd ADDR=0x29ee3d6a LEN=38
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 68795000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0xd ADDR=0x29ee3d6a RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 68795000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0xd ADDR=0x29ee3d6a LEN=38
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 68795000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #33: ID=0xd ADDR=0x29ee3d6a LEN=38
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 68795000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [33/40] Unaligned AXI4_WRITE: ADDR=0x29ee3d6a SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_INCR (AlignmentOffset=2)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 68795000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0xe  ADDR=0x27d97cdf  LEN=77
+# UVM_INFO ../src/mst/axi4_master_driver.sv(101) @ 68795000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW -> W (sequential)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 68825000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0xe ADDR=0x27d97cdf LEN=77 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 68825000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0xe ADDR=0x27d97cdf LEN=77
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 68825000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0xe ADDR=0x27d97cdf LEN=77
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 70385000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0xe ADDR=0x27d97cdf 78 beats
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 70385000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0xe ADDR=0x27d97cdf 78 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 70415000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 70415000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0xe ADDR=0x27d97cdf RESP=AXI4_RESP_OKAY  78 beats processed
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 70415000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0xe ADDR=0x27d97cdf RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 70415000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0xe ADDR=0x27d97cdf LEN=77
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 70415000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0xe ADDR=0x27d97cdf RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 70415000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0xe ADDR=0x27d97cdf LEN=77
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 70415000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #34: ID=0xe ADDR=0x27d97cdf LEN=77
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 70415000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [34/40] Unaligned AXI4_WRITE: ADDR=0x27d97cdf SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 70415000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_READ  ID=0xb  ADDR=0x3e596413  LEN=49
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(300) @ 70445000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AR received: ID=0xb ADDR=0x3e596413 LEN=49 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(246) @ 70445000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AR observed: ID=0xb ADDR=0x3e596413 LEN=49
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(224) @ 70445000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AR received: ID=0xb ADDR=0x3e596413 LEN=49
+# UVM_INFO ../src/mst/axi4_master_driver.sv(254) @ 71445000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Read complete: 50 beats received
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(349) @ 71445000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Read complete: ID=0xb ADDR=0x3e596413 RESP=AXI4_RESP_OKAY  50 beats sent
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(314) @ 71445000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Read complete: ID=0xb ADDR=0x3e596413 50 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 71445000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_READ received: ID=0xb ADDR=0x3e596413 LEN=49
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(287) @ 71445000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Read data sent: ID=0xb ADDR=0x3e596413 50 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 71445000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_READ received: ID=0xb ADDR=0x3e596413 LEN=49
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 71445000: uvm_test_top.env.scb [axi4_scoreboard] [READ] MATCH #35: ID=0xb ADDR=0x3e596413 LEN=49
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 71445000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [35/40] Unaligned AXI4_READ: ADDR=0x3e596413 SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 71445000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_READ  ID=0x8  ADDR=0x393f8519  LEN=11
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(300) @ 71475000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AR received: ID=0x8 ADDR=0x393f8519 LEN=11 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(224) @ 71475000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AR received: ID=0x8 ADDR=0x393f8519 LEN=11
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(246) @ 71475000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AR observed: ID=0x8 ADDR=0x393f8519 LEN=11
+# UVM_INFO ../src/mst/axi4_master_driver.sv(254) @ 71715000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Read complete: 12 beats received
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(349) @ 71715000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Read complete: ID=0x8 ADDR=0x393f8519 RESP=AXI4_RESP_OKAY  12 beats sent
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(287) @ 71715000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Read data sent: ID=0x8 ADDR=0x393f8519 12 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 71715000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_READ received: ID=0x8 ADDR=0x393f8519 LEN=11
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(314) @ 71715000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Read complete: ID=0x8 ADDR=0x393f8519 12 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 71715000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_READ received: ID=0x8 ADDR=0x393f8519 LEN=11
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 71715000: uvm_test_top.env.scb [axi4_scoreboard] [READ] MATCH #36: ID=0x8 ADDR=0x393f8519 LEN=11
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 71715000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [36/40] Unaligned AXI4_READ: ADDR=0x393f8519 SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_FIXED (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 71715000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0xd  ADDR=0x68f5bca5  LEN=91
+# UVM_INFO ../src/mst/axi4_master_driver.sv(94) @ 71715000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW || W (parallel)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 71745000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0xd ADDR=0x68f5bca5 LEN=91 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 71745000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0xd ADDR=0x68f5bca5 LEN=91
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 71745000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0xd ADDR=0x68f5bca5 LEN=91
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 73555000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0xd ADDR=0x68f5bca5 92 beats
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 73555000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0xd ADDR=0x68f5bca5 92 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 73585000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 73585000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0xd ADDR=0x68f5bca5 RESP=AXI4_RESP_OKAY  92 beats processed
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 73585000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0xd ADDR=0x68f5bca5 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 73585000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0xd ADDR=0x68f5bca5 LEN=91
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 73585000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0xd ADDR=0x68f5bca5 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 73585000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0xd ADDR=0x68f5bca5 LEN=91
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 73585000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #37: ID=0xd ADDR=0x68f5bca5 LEN=91
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 73585000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [37/40] Unaligned AXI4_WRITE: ADDR=0x68f5bca5 SIZE=AXI4_SIZE_2B BURST=AXI4_BURST_INCR (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 73585000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_READ  ID=0xd  ADDR=0xbac19631  LEN=0
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(300) @ 73615000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AR received: ID=0xd ADDR=0xbac19631 LEN=0 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(224) @ 73615000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AR received: ID=0xd ADDR=0xbac19631 LEN=0
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(246) @ 73615000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AR observed: ID=0xd ADDR=0xbac19631 LEN=0
+# UVM_INFO ../src/mst/axi4_master_driver.sv(254) @ 73635000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Read complete: 1 beats received
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(349) @ 73635000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Read complete: ID=0xd ADDR=0xbac19631 RESP=AXI4_RESP_EXOKAY  1 beats sent
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(287) @ 73635000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Read data sent: ID=0xd ADDR=0xbac19631 1 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 73635000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_READ received: ID=0xd ADDR=0xbac19631 LEN=0
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(314) @ 73635000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Read complete: ID=0xd ADDR=0xbac19631 1 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 73635000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_READ received: ID=0xd ADDR=0xbac19631 LEN=0
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 73635000: uvm_test_top.env.scb [axi4_scoreboard] [READ] MATCH #38: ID=0xd ADDR=0xbac19631 LEN=0
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 73635000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [38/40] Unaligned AXI4_READ: ADDR=0xbac19631 SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_FIXED (AlignmentOffset=1)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 73635000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_READ  ID=0x4  ADDR=0x79d98473  LEN=69
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(300) @ 73665000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AR received: ID=0x4 ADDR=0x79d98473 LEN=69 LOCK=AXI4_LOCK_NORMAL
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(246) @ 73665000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AR observed: ID=0x4 ADDR=0x79d98473 LEN=69
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(224) @ 73665000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AR received: ID=0x4 ADDR=0x79d98473 LEN=69
+# UVM_INFO ../src/mst/axi4_master_driver.sv(254) @ 75065000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Read complete: 70 beats received
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(349) @ 75065000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Read complete: ID=0x4 ADDR=0x79d98473 RESP=AXI4_RESP_OKAY  70 beats sent
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(314) @ 75065000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Read complete: ID=0x4 ADDR=0x79d98473 70 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 75065000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_READ received: ID=0x4 ADDR=0x79d98473 LEN=69
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(287) @ 75065000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Read data sent: ID=0x4 ADDR=0x79d98473 70 beats
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 75065000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_READ received: ID=0x4 ADDR=0x79d98473 LEN=69
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 75065000: uvm_test_top.env.scb [axi4_scoreboard] [READ] MATCH #39: ID=0x4 ADDR=0x79d98473 LEN=69
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 75065000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [39/40] Unaligned AXI4_READ: ADDR=0x79d98473 SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_INCR (AlignmentOffset=3)
+# UVM_INFO ../src/mst/axi4_master_driver.sv(55) @ 75065000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Driving AXI4_WRITE  ID=0x6  ADDR=0x80138c05  LEN=4
+# UVM_INFO ../src/mst/axi4_master_driver.sv(101) @ 75065000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write order: AW -> W (sequential)
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(165) @ 75095000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] AW received: ID=0x6 ADDR=0x80138c05 LEN=4 LOCK=AXI4_LOCK_EXCLUSIVE
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(116) @ 75095000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] AW received: ID=0x6 ADDR=0x80138c05 LEN=4
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(124) @ 75095000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] AW observed: ID=0x6 ADDR=0x80138c05 LEN=4
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(167) @ 75195000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] W data assembled: ID=0x6 ADDR=0x80138c05 5 beats
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(184) @ 75195000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] W data assembled: ID=0x6 ADDR=0x80138c05 5 beats
+# UVM_INFO ../src/mst/axi4_master_driver.sv(197) @ 75225000: uvm_test_top.env.master_agent.drv [axi4_master_driver] Write response: AXI4_RESP_OKAY
+# UVM_INFO ../src/slv/axi4_slave_driver.sv(261) @ 75225000: uvm_test_top.env.slave_agent.drv [axi4_slave_driver] Write complete: ID=0x6 ADDR=0x80138c05 RESP=AXI4_RESP_OKAY  5 beats processed
+# UVM_INFO ../src/mst/axi4_master_monitor.sv(210) @ 75225000: uvm_test_top.env.master_agent.mon [axi4_master_monitor] Write complete: ID=0x6 ADDR=0x80138c05 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(82) @ 75225000: uvm_test_top.env.scb [axi4_scoreboard] Master AXI4_WRITE received: ID=0x6 ADDR=0x80138c05 LEN=4
+# UVM_INFO ../src/slv/axi4_slave_monitor.sv(189) @ 75225000: uvm_test_top.env.slave_agent.mon [axi4_slave_monitor] Write response sent: ID=0x6 ADDR=0x80138c05 RESP=AXI4_RESP_OKAY
+# UVM_INFO ../src/env/axi4_scoreboard.sv(103) @ 75225000: uvm_test_top.env.scb [axi4_scoreboard] Slave AXI4_WRITE received: ID=0x6 ADDR=0x80138c05 LEN=4
+# UVM_INFO ../src/env/axi4_scoreboard.sv(154) @ 75225000: uvm_test_top.env.scb [axi4_scoreboard] [WRITE] MATCH #40: ID=0x6 ADDR=0x80138c05 LEN=4
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(51) @ 75225000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] [40/40] Unaligned AXI4_WRITE: ADDR=0x80138c05 SIZE=AXI4_SIZE_4B BURST=AXI4_BURST_FIXED (AlignmentOffset=1)
+# UVM_INFO ../src/seq/axi4_unaligned_seq.sv(54) @ 75225000: uvm_test_top.env.master_agent.sqr@@unalign_seq [axi4_unaligned_seq] Unaligned access sequence complete
+# UVM_INFO ../src/test/axi4_unaligned_test.sv(33) @ 76225000: uvm_test_top [axi4_unaligned_test] Unaligned access test complete
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 76225000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO ../src/env/axi4_scoreboard.sv(218) @ 76225000: uvm_test_top.env.scb [axi4_scoreboard] 
+# ========================================
+#          SCOREBOARD SUMMARY
+# ========================================
+#   Master transactions : 40
+#   Slave transactions  : 40
+#   Matches             : 40
+#   Mismatches          : 0
+#   Unmatched master WR : 0
+#   Unmatched master RD : 0
+#   Unmatched slave  WR : 0
+#   Unmatched slave  RD : 0
+# ========================================
+#   RESULT : PASS
+# ========================================
+# UVM_INFO ../src/test/axi4_base_test.sv(91) @ 76225000: uvm_test_top [axi4_unaligned_test] 
+# === TEST PASSED ===
+# 
+# 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :  590
+# UVM_WARNING :    0
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [Questa UVM]     3
+# [RNTST]     1
+# [TB_TOP]     2
+# [TEST_DONE]     1
+# [TOP_TB]     1
+# [UVMTOP]     1
+# [axi4_master_agent]     1
+# [axi4_master_driver]   109
+# [axi4_master_monitor]   109
+# [axi4_scoreboard]   121
+# [axi4_slave_agent]     1
+# [axi4_slave_driver]    81
+# [axi4_slave_monitor]   109
+# [axi4_unaligned_seq]    42
+# [axi4_unaligned_test]     3
+# [axi4_vip_env]     5
+# ** Note: $finish    : /cadtools/mentor/Questa_10.6b/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+#    Time: 76225 ns  Iteration: 55  Instance: /tb_top
+# Saving coverage database on exit...
+# End time: 11:27:05 on Jun 05,2026, Elapsed time: 0:00:42
+# Errors: 0, Warnings: 0
