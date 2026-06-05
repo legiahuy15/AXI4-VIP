@@ -18,10 +18,14 @@ class axi4_burst_sweep_seq extends axi4_base_sequence;
         super.new(name);
     endfunction : new
 
-    // body task
     virtual task body();
         axi4_transaction tr;
         int count = 0;
+        int fixed_lens[5] = '{0, 1, 2, 3, 4};
+        int wrap_lens[4]  = '{0, 1, 2, 3};
+        int incr_lens[6]  = '{0, 1, 2, 3, 4, 5};
+        int sizes[3]      = '{0, 1, 2};
+        int err_types[2]  = '{0, 1};
 
         `uvm_info(get_type_name(), "Starting burst type, size, and length sweep sequence", UVM_MEDIUM)
 
