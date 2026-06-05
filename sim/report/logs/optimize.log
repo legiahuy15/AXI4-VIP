@@ -1,5 +1,5 @@
 QuestaSim-64 vopt 10.6b Compiler 2017.05 May 25 2017
-Start time: 09:06:22 on Jun 05,2026
+Start time: 10:24:32 on Jun 05,2026
 vopt "+acc" -work work -l ./report/logs/optimize.log -cover sbcet tb_top -o opt_tb_top 
 
 Top level modules:
@@ -13,7 +13,15 @@ Analyzing design...
 -- Loading interface axi4_if
 -- Loading module axi4_sva
 -- Loading package mtiUvm.questa_uvm_pkg
-Incremental compilation check found no design-units have changed.
+Optimizing 8 design-units (inlining 0/3 module instances):
+-- Optimizing module axi4_sva(fast)
+-- Optimizing interface axi4_if(fast)
+-- Optimizing module tb_top(fast)
+-- Optimizing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)(fast)
+-- Optimizing package mtiUvm.questa_uvm_pkg(fast)
+-- Optimizing package axi4_pkg(fast)
+-- Optimizing package axi4_test_pkg(fast)
+-- Optimizing interface axi4_if(fast)
 Optimized design name is opt_tb_top
-End time: 09:06:23 on Jun 05,2026, Elapsed time: 0:00:01
+End time: 10:24:37 on Jun 05,2026, Elapsed time: 0:00:05
 Errors: 0, Warnings: 0

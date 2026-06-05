@@ -12,10 +12,15 @@
 ../src/mst/axi4_master_monitor.sv
 ../src/mst/axi4_master_sequencer.sv
 ../src/seq/axi4_base_sequence.sv
+../src/seq/axi4_burst_sweep_seq.sv
+../src/seq/axi4_cache_prot_seq.sv
+../src/seq/axi4_exclusive_seq.sv
 ../src/seq/axi4_outstanding_seq.sv
 ../src/seq/axi4_random_seq.sv
 ../src/seq/axi4_single_read_seq.sv
 ../src/seq/axi4_single_write_seq.sv
+../src/seq/axi4_strobe_pattern_seq.sv
+../src/seq/axi4_unaligned_seq.sv
 ../src/seq/axi4_write_read_back_seq.sv
 ../src/slv/axi4_slave_agent.sv
 ../src/slv/axi4_slave_driver.sv
@@ -24,6 +29,11 @@
 ../src/sva/axi4_sva.sv
 ../src/tb_top.sv
 ../src/test/axi4_base_test.sv
+../src/test/axi4_burst_sweep_test.sv
+../src/test/axi4_cache_prot_test.sv
+../src/test/axi4_exclusive_test.sv
 ../src/test/axi4_outstanding_test.sv
 ../src/test/axi4_random_test.sv
+../src/test/axi4_strobe_test.sv
+../src/test/axi4_unaligned_test.sv
 ../src/test/axi4_wr_rd_test.sv
