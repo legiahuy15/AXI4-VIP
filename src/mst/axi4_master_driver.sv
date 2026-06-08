@@ -73,9 +73,9 @@ class axi4_master_driver extends uvm_driver #(axi4_transaction);
                             automatic axi4_transaction active_tr = tr;
                             begin
                                 drive_transaction(active_tr);
-                                seq_item_port.item_done();
                             end
                         join_none
+                        seq_item_port.item_done();
                     end
                 end
                 receive_b_responses();
@@ -250,7 +250,7 @@ class axi4_master_driver extends uvm_driver #(axi4_transaction);
         vif.master_cb.BREADY <= 1'b1;
         forever begin
             @(vif.master_cb);
-            if (vif.master_cb.BVALID && vif.master_cb.BREADY) begin
+            if (vif.master_cb.BVALID) begin
                 bit [AXI4_ID_WIDTH-1:0] bid;
                 bid = vif.master_cb.BID;
                 if (pending_b_tr.exists(bid) && pending_b_tr[bid].size() > 0) begin
@@ -279,7 +279,7 @@ class axi4_master_driver extends uvm_driver #(axi4_transaction);
             axi4_transaction tr;
 
             do @(vif.master_cb);
-            while (!(vif.master_cb.RVALID && vif.master_cb.RREADY));
+            while (!vif.master_cb.RVALID);
 
             rid = vif.master_cb.RID;
 
@@ -295,7 +295,7 @@ class axi4_master_driver extends uvm_driver #(axi4_transaction);
                 end else begin
                     for (int i = 1; i <= tr.len; i++) begin
                         do @(vif.master_cb);
-                        while (!(vif.master_cb.RVALID && vif.master_cb.RREADY));
+                        while (!vif.master_cb.RVALID);
                         
                         tr.data[i]  = vif.master_cb.RDATA;
                         tr.rresp[i] = axi4_resp_e'(vif.master_cb.RRESP);
@@ -317,7 +317,7 @@ class axi4_master_driver extends uvm_driver #(axi4_transaction);
                            $sformatf("Master driver received unexpected R response ID=0x%0h", rid))
                 while (!vif.master_cb.RLAST) begin
                     do @(vif.master_cb);
-                    while (!(vif.master_cb.RVALID && vif.master_cb.RREADY));
+                    while (!vif.master_cb.RVALID);
                 end
             end
         end
