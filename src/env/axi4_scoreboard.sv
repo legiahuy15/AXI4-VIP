@@ -191,19 +191,39 @@ class axi4_scoreboard extends uvm_scoreboard;
     // update_ref_mem — update scoreboard's reference memory on WRITES
     // =========================================================================
     function void update_ref_mem(axi4_transaction tr);
-        for (int beat = 0; beat <= tr.len; beat++) begin
-            bit [AXI4_ADDR_WIDTH-1:0] beat_addr;
-            bit [AXI4_ADDR_WIDTH-1:0] aligned_beat_addr;
-            beat_addr = calc_beat_addr(tr.addr, beat, tr.size, tr.burst, tr.len);
-            aligned_beat_addr = (beat_addr / AXI4_STRB_WIDTH) * AXI4_STRB_WIDTH;
-            for (int b = 0; b < AXI4_STRB_WIDTH; b++) begin
-                if (tr.strb[beat][b]) begin
-                    ref_mem[aligned_beat_addr + b] = tr.data[beat][b*8 +: 8];
-                    `uvm_info(get_type_name(),
-                              $sformatf("[REF_MEM_WRITE] Addr=0x%08h Data=0x%02h",
-                                        aligned_beat_addr + b, tr.data[beat][b*8 +: 8]), UVM_HIGH)
+        bit do_write = 1;
+
+        // Check if write should be ignored (matches slave driver's logic)
+        if (tr.addr >= 32'hF000_0000) begin
+            do_write = 0; // DECERR region
+        end else if (tr.addr >= 32'hE000_0000) begin
+            do_write = 0; // SLVERR region
+        end else if (tr.lock == AXI4_LOCK_EXCLUSIVE) begin
+            // Exclusive Write: succeeds only if it received EXOKAY
+            if (tr.resp != AXI4_RESP_EXOKAY) begin
+                do_write = 0;
+            end
+        end
+
+        if (do_write) begin
+            for (int beat = 0; beat <= tr.len; beat++) begin
+                bit [AXI4_ADDR_WIDTH-1:0] beat_addr;
+                bit [AXI4_ADDR_WIDTH-1:0] aligned_beat_addr;
+                beat_addr = calc_beat_addr(tr.addr, beat, tr.size, tr.burst, tr.len);
+                aligned_beat_addr = (beat_addr / AXI4_STRB_WIDTH) * AXI4_STRB_WIDTH;
+                for (int b = 0; b < AXI4_STRB_WIDTH; b++) begin
+                    if (tr.strb[beat][b]) begin
+                        ref_mem[aligned_beat_addr + b] = tr.data[beat][b*8 +: 8];
+                        `uvm_info(get_type_name(),
+                                  $sformatf("[REF_MEM_WRITE] Addr=0x%08h Data=0x%02h",
+                                            aligned_beat_addr + b, tr.data[beat][b*8 +: 8]), UVM_HIGH)
+                    end
                 end
             end
+        end else begin
+            `uvm_info(get_type_name(),
+                      $sformatf("[REF_MEM_WRITE_IGNORED] Write ignored for ADDR=0x%08h LOCK=%s RESP=%s",
+                                tr.addr, tr.lock.name(), tr.resp.name()), UVM_MEDIUM)
         end
     endfunction : update_ref_mem
 
