@@ -15,6 +15,7 @@
 ../src/seq/axi4_burst_sweep_seq.sv
 ../src/seq/axi4_cache_prot_seq.sv
 ../src/seq/axi4_exclusive_seq.sv
+../src/seq/axi4_out_of_order_seq.sv
 ../src/seq/axi4_outstanding_seq.sv
 ../src/seq/axi4_random_seq.sv
 ../src/seq/axi4_single_read_seq.sv
@@ -32,8 +33,9 @@
 ../src/test/axi4_burst_sweep_test.sv
 ../src/test/axi4_cache_prot_test.sv
 ../src/test/axi4_exclusive_test.sv
+../src/test/axi4_out_of_order_test.sv
 ../src/test/axi4_outstanding_test.sv
 ../src/test/axi4_random_test.sv
+../src/test/axi4_sanity_test.sv
 ../src/test/axi4_strobe_test.sv
 ../src/test/axi4_unaligned_test.sv
-../src/test/axi4_wr_rd_test.sv
