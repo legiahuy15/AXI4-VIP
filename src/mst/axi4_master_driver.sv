@@ -283,7 +283,7 @@ class axi4_master_driver extends uvm_driver #(axi4_transaction);
                     aw_done.delete(tr);
                     
                     drop_driver_objection("Write response received");
-                    tr.done_event.trigger();
+                    ->tr.done_event;
                     `uvm_info(get_type_name(),
                               $sformatf("Master driver received B response: ID=0x%0h RESP=%s",
                                         tr.id, tr.resp.name()), UVM_HIGH)
@@ -343,7 +343,7 @@ class axi4_master_driver extends uvm_driver #(axi4_transaction);
                 end
                 
                 drop_driver_objection("Read completed");
-                tr.done_event.trigger();
+                ->tr.done_event;
                 `uvm_info(get_type_name(),
                           $sformatf("Master driver received all R beats for ID=0x%0h", tr.id), UVM_HIGH)
             end else begin

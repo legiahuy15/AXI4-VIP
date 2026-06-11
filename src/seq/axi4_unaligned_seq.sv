@@ -8,6 +8,9 @@
 //               This file is `included inside axi4_pkg.sv.
 //==============================================================================
 
+`ifndef AXI4_UNALIGNED_SEQ_INCLUDED_
+`define AXI4_UNALIGNED_SEQ_INCLUDED_
+
 class axi4_unaligned_seq extends axi4_base_sequence;
 
     `uvm_object_utils(axi4_unaligned_seq)
@@ -55,3 +58,5 @@ class axi4_unaligned_seq extends axi4_base_sequence;
     endtask : body
 
 endclass : axi4_unaligned_seq
+
+`endif // AXI4_UNALIGNED_SEQ_INCLUDED_

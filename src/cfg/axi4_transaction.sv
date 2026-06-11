@@ -42,7 +42,7 @@ class axi4_transaction extends uvm_sequence_item;
 
     // Bus completion event — triggered by driver when B/R response is received.
     // Sequences can wait on this to implement true outstanding depth control.
-    uvm_event                               done_event;
+    event                                   done_event;
 
     // =========================================================================
     // UVM utility macro
@@ -163,7 +163,7 @@ class axi4_transaction extends uvm_sequence_item;
     // =========================================================================
     function new(string name = "axi4_transaction");
         super.new(name);
-        done_event = new("done_event");
+        done_event = new;
     endfunction : new
 
     // =========================================================================

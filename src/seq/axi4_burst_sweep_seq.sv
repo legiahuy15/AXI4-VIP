@@ -9,6 +9,9 @@
 //               This file is `included inside axi4_pkg.sv.
 //==============================================================================
 
+`ifndef AXI4_BURST_SWEEP_SEQ_INCLUDED_
+`define AXI4_BURST_SWEEP_SEQ_INCLUDED_
+
 class axi4_burst_sweep_seq extends axi4_base_sequence;
 
     `uvm_object_utils(axi4_burst_sweep_seq)
@@ -171,3 +174,5 @@ class axi4_burst_sweep_seq extends axi4_base_sequence;
     endtask : body
 
 endclass : axi4_burst_sweep_seq
+
+`endif // AXI4_BURST_SWEEP_SEQ_INCLUDED_

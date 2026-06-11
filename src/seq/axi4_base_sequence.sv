@@ -8,6 +8,9 @@
 //               This file is `included inside axi4_pkg.sv.
 //==============================================================================
 
+`ifndef AXI4_BASE_SEQ_INCLUDED_
+`define AXI4_BASE_SEQ_INCLUDED_
+
 class axi4_base_sequence extends uvm_sequence #(axi4_transaction);
 
     `uvm_object_utils(axi4_base_sequence)
@@ -28,3 +31,5 @@ class axi4_base_sequence extends uvm_sequence #(axi4_transaction);
     endfunction : new
 
 endclass : axi4_base_sequence
+
+`endif // AXI4_BASE_SEQ_INCLUDED_

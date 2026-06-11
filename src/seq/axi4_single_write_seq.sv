@@ -8,6 +8,9 @@
 //               This file is `included inside axi4_pkg.sv.
 //==============================================================================
 
+`ifndef AXI4_SINGLE_WRITE_SEQ_INCLUDED_
+`define AXI4_SINGLE_WRITE_SEQ_INCLUDED_
+
 class axi4_single_write_seq extends axi4_base_sequence;
 
     `uvm_object_utils(axi4_single_write_seq)
@@ -60,3 +63,5 @@ class axi4_single_write_seq extends axi4_base_sequence;
     endtask : body
 
 endclass : axi4_single_write_seq
+
+`endif // AXI4_SINGLE_WRITE_SEQ_INCLUDED_

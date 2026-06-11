@@ -14,6 +14,9 @@
 //               This file is `included inside axi4_pkg.sv.
 //==============================================================================
 
+`ifndef AXI4_OUTSTANDING_SEQ_INCLUDED_
+`define AXI4_OUTSTANDING_SEQ_INCLUDED_
+
 class axi4_outstanding_seq extends axi4_base_sequence;
 
     `uvm_object_utils(axi4_outstanding_seq)
@@ -77,7 +80,7 @@ class axi4_outstanding_seq extends axi4_base_sequence;
 
                             // Wait for actual B response on the bus before
                             // releasing the semaphore slot.
-                            wr_tr.done_event.wait_trigger();
+                            wait(wr_tr.done_event.triggered);
 
                             `uvm_info(get_type_name(),
                                       $sformatf("Outstanding Write [#%0d] complete: ID=0x%0h", idx, wr_tr.id),
@@ -116,7 +119,7 @@ class axi4_outstanding_seq extends axi4_base_sequence;
 
                             // Wait for actual R response (all beats) on the bus
                             // before releasing the semaphore slot.
-                            rd_tr.done_event.wait_trigger();
+                            wait(rd_tr.done_event.triggered);
 
                             `uvm_info(get_type_name(),
                                       $sformatf("Outstanding Read [#%0d] complete: ID=0x%0h", idx, rd_tr.id),
@@ -135,3 +138,5 @@ class axi4_outstanding_seq extends axi4_base_sequence;
     endtask : body
 
 endclass : axi4_outstanding_seq
+
+`endif // AXI4_OUTSTANDING_SEQ_INCLUDED_
