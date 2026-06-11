@@ -40,6 +40,10 @@ class axi4_transaction extends uvm_sequence_item;
     // Read response — R channel (1 per beat)
     rand axi4_resp_e                        rresp[];
 
+    // Bus completion event — triggered by driver when B/R response is received.
+    // Sequences can wait on this to implement true outstanding depth control.
+    uvm_event                               done_event;
+
     // =========================================================================
     // UVM utility macro
     // =========================================================================
@@ -159,6 +163,7 @@ class axi4_transaction extends uvm_sequence_item;
     // =========================================================================
     function new(string name = "axi4_transaction");
         super.new(name);
+        done_event = new("done_event");
     endfunction : new
 
     // =========================================================================
@@ -173,6 +178,8 @@ class axi4_transaction extends uvm_sequence_item;
         this.rresp = new[rhs_t.rresp.size()];
         foreach (rhs_t.rresp[i])
             this.rresp[i] = rhs_t.rresp[i];
+        // done_event is per-instance, don't copy — each transaction
+        // gets its own fresh event from the constructor.
     endfunction : do_copy
 
     // =========================================================================

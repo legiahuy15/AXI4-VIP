@@ -71,7 +71,7 @@ class axi4_master_driver extends uvm_driver #(axi4_transaction);
                         `uvm_info(get_type_name(),
                                   $sformatf("Driving %s  ID=0x%0h  ADDR=0x%08h  LEN=%0d",
                                             tr.dir.name(), tr.id, tr.addr, tr.len), UVM_MEDIUM)
-                        
+
                         if (tr.dir == AXI4_WRITE) begin
                             raise_driver_objection("Pending write transaction");
                             pending_b_tr[tr.id].push_back(tr);
@@ -82,7 +82,7 @@ class axi4_master_driver extends uvm_driver #(axi4_transaction);
                             pending_r_tr[tr.id].push_back(tr);
                             ar_drive_queue.push_back(tr);
                         end
-                        
+
                         seq_item_port.item_done();
                     end
                 end
@@ -283,6 +283,7 @@ class axi4_master_driver extends uvm_driver #(axi4_transaction);
                     aw_done.delete(tr);
                     
                     drop_driver_objection("Write response received");
+                    tr.done_event.trigger();
                     `uvm_info(get_type_name(),
                               $sformatf("Master driver received B response: ID=0x%0h RESP=%s",
                                         tr.id, tr.resp.name()), UVM_HIGH)
@@ -321,7 +322,14 @@ class axi4_master_driver extends uvm_driver #(axi4_transaction);
                     for (int i = 1; i <= tr.len; i++) begin
                         do @(vif.master_cb);
                         while (!vif.master_cb.RVALID);
-                        
+
+                        // AXI4: no read data interleaving — verify RID is
+                        // consistent across all beats within a burst.
+                        if (vif.master_cb.RID !== rid)
+                            `uvm_error(get_type_name(),
+                                       $sformatf("RID changed mid-burst: expected 0x%0h, got 0x%0h on beat %0d (ADDR=0x%08h)",
+                                                 rid, vif.master_cb.RID, i, tr.addr))
+
                         tr.data[i]  = vif.master_cb.RDATA;
                         tr.rresp[i] = axi4_resp_e'(vif.master_cb.RRESP);
 
@@ -335,6 +343,7 @@ class axi4_master_driver extends uvm_driver #(axi4_transaction);
                 end
                 
                 drop_driver_objection("Read completed");
+                tr.done_event.trigger();
                 `uvm_info(get_type_name(),
                           $sformatf("Master driver received all R beats for ID=0x%0h", tr.id), UVM_HIGH)
             end else begin

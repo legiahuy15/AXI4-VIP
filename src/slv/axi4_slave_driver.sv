@@ -72,6 +72,16 @@ class axi4_slave_driver extends uvm_driver #(axi4_transaction);
     int unsigned resp_delay_min  = 0;
     int unsigned resp_delay_max  = 0;
 
+    // Out-of-order read response control
+    //   r_reorder_enable  : when 1, read responses may be reordered across IDs
+    //   r_outstanding_max : max concurrent read responses being prepared
+    bit          r_reorder_enable  = 0;
+    int unsigned r_outstanding_max = 4;
+
+    // R channel mutex — ensures only one thread drives R beats at a time
+    // (AXI4: no read data interleaving within a burst)
+    protected semaphore r_channel_mutex;
+
     // =========================================================================
     // Constructor
     // =========================================================================
@@ -91,6 +101,11 @@ class axi4_slave_driver extends uvm_driver #(axi4_transaction);
         void'(uvm_config_db#(int unsigned)::get(this, "", "ready_delay_max", ready_delay_max));
         void'(uvm_config_db#(int unsigned)::get(this, "", "resp_delay_min",  resp_delay_min));
         void'(uvm_config_db#(int unsigned)::get(this, "", "resp_delay_max",  resp_delay_max));
+        // Out-of-order read response configuration
+        void'(uvm_config_db#(bit)::get(this, "", "r_reorder_enable",  r_reorder_enable));
+        void'(uvm_config_db#(int unsigned)::get(this, "", "r_outstanding_max", r_outstanding_max));
+        // Create R channel mutex
+        r_channel_mutex = new(1);
     endfunction : build_phase
 
     // =========================================================================
@@ -304,11 +319,14 @@ class axi4_slave_driver extends uvm_driver #(axi4_transaction);
 
     // =========================================================================
     // Handle Reads — forks collector and driver to support outstanding reads.
+    //   When r_reorder_enable is set, responses may arrive out-of-order
+    //   across different IDs (but beats within a burst are always contiguous
+    //   per AXI4 spec).
     // =========================================================================
     task handle_reads();
         fork
             collect_ar();
-            drive_r();
+            dispatch_r_responses();
         join
     endtask : handle_reads
 
@@ -338,63 +356,100 @@ class axi4_slave_driver extends uvm_driver #(axi4_transaction);
         end
     endtask : collect_ar
 
-    // ----- R Driver: reads from memory and drives R channel beats -----
-    task drive_r();
+    // ----- R Dispatcher: forks a thread per AR request for OOO support -----
+    //   A semaphore limits the number of concurrent read-response threads.
+    //   Each thread prepares its data independently, then acquires the
+    //   R channel mutex to drive beats atomically (no interleaving).
+    task dispatch_r_responses();
+        semaphore r_outstanding_sem = new(r_outstanding_max);
         forever begin
             ar_info_t ar;
-            axi4_resp_e rd_resp;
-
             wait (ar_fifo.size() > 0);
             ar = ar_fifo.pop_front();
 
-            if (ar.addr >= 32'hF000_0000) begin
-                rd_resp = AXI4_RESP_DECERR;
-            end else if (ar.addr >= 32'hE000_0000) begin
-                rd_resp = AXI4_RESP_SLVERR;
-            end else if (ar.lock == AXI4_LOCK_EXCLUSIVE) begin
-                rd_resp = AXI4_RESP_EXOKAY;
-                excl_table[ar.id] = ar.addr;
-                excl_valid[ar.id] = 1;
-            end else begin
-                rd_resp = AXI4_RESP_OKAY;
-            end
-
-            for (int beat = 0; beat <= ar.len; beat++) begin
-                bit [AXI4_ADDR_WIDTH-1:0] beat_addr;
-                bit [AXI4_DATA_WIDTH-1:0] rdata;
-                int unsigned num_bytes = 1 << ar.size;
-
-                beat_addr = calc_beat_addr(ar.addr, beat, ar.size, ar.burst, ar.len);
-                rdata = '0;
-                for (int offset = 0; offset < num_bytes; offset++) begin
-                    bit [AXI4_ADDR_WIDTH-1:0] byte_addr;
-                    int unsigned lane;
-                    byte_addr = beat_addr + offset;
-                    lane = byte_addr % AXI4_STRB_WIDTH;
-                    if (mem.exists(byte_addr))
-                        rdata[lane*8 +: 8] = mem[byte_addr];
+            r_outstanding_sem.get(1);
+            fork
+                automatic ar_info_t ar_local = ar;
+                begin
+                    drive_r_single(ar_local);
+                    r_outstanding_sem.put(1);
                 end
-
-                rand_resp_delay();
-                @(vif.slave_cb);
-                vif.slave_cb.RID    <= ar.id;
-                vif.slave_cb.RDATA  <= rdata;
-                vif.slave_cb.RRESP  <= rd_resp;
-                vif.slave_cb.RLAST  <= (beat == ar.len) ? 1'b1 : 1'b0;
-                vif.slave_cb.RVALID <= 1'b1;
-
-                do @(vif.slave_cb);
-                while (!vif.slave_cb.RREADY);
-
-                vif.slave_cb.RVALID <= 1'b0;
-                vif.slave_cb.RLAST  <= 1'b0;
-            end
-
-            `uvm_info(get_type_name(),
-                      $sformatf("Read complete: ID=0x%0h ADDR=0x%08h RESP=%s  %0d beats sent",
-                                ar.id, ar.addr, rd_resp.name(), ar.len + 1), UVM_MEDIUM)
+            join_none
         end
-    endtask : drive_r
+    endtask : dispatch_r_responses
+
+    // ----- R Single: prepare data and drive R beats for one AR request -----
+    task drive_r_single(ar_info_t ar);
+        axi4_resp_e rd_resp;
+        // Pre-read data from memory (can happen concurrently for multiple requests)
+        bit [AXI4_DATA_WIDTH-1:0] rdata_q[$];
+
+        if (ar.addr >= 32'hF000_0000) begin
+            rd_resp = AXI4_RESP_DECERR;
+        end else if (ar.addr >= 32'hE000_0000) begin
+            rd_resp = AXI4_RESP_SLVERR;
+        end else if (ar.lock == AXI4_LOCK_EXCLUSIVE) begin
+            rd_resp = AXI4_RESP_EXOKAY;
+            excl_table[ar.id] = ar.addr;
+            excl_valid[ar.id] = 1;
+        end else begin
+            rd_resp = AXI4_RESP_OKAY;
+        end
+
+        // Pre-read all beat data from memory
+        for (int beat = 0; beat <= ar.len; beat++) begin
+            bit [AXI4_ADDR_WIDTH-1:0] beat_addr;
+            bit [AXI4_DATA_WIDTH-1:0] rdata;
+            int unsigned num_bytes = 1 << ar.size;
+
+            beat_addr = calc_beat_addr(ar.addr, beat, ar.size, ar.burst, ar.len);
+            rdata = '0;
+            for (int offset = 0; offset < num_bytes; offset++) begin
+                bit [AXI4_ADDR_WIDTH-1:0] byte_addr;
+                int unsigned lane;
+                byte_addr = beat_addr + offset;
+                lane = byte_addr % AXI4_STRB_WIDTH;
+                if (mem.exists(byte_addr))
+                    rdata[lane*8 +: 8] = mem[byte_addr];
+            end
+            rdata_q.push_back(rdata);
+        end
+
+        // When reordering is enabled, add a random delay before acquiring
+        // the channel mutex.  This creates natural reordering: a later
+        // request with a shorter delay will drive before an earlier one.
+        if (r_reorder_enable) begin
+            int unsigned reorder_delay;
+            reorder_delay = $urandom_range(10, 0);
+            repeat (reorder_delay) @(vif.slave_cb);
+        end
+
+        // Acquire R channel mutex — only one thread drives R beats at a time
+        // (AXI4 spec: beats within a burst must be contiguous, no interleaving)
+        r_channel_mutex.get(1);
+
+        for (int beat = 0; beat <= ar.len; beat++) begin
+            rand_resp_delay();
+            @(vif.slave_cb);
+            vif.slave_cb.RID    <= ar.id;
+            vif.slave_cb.RDATA  <= rdata_q[beat];
+            vif.slave_cb.RRESP  <= rd_resp;
+            vif.slave_cb.RLAST  <= (beat == ar.len) ? 1'b1 : 1'b0;
+            vif.slave_cb.RVALID <= 1'b1;
+
+            do @(vif.slave_cb);
+            while (!vif.slave_cb.RREADY);
+
+            vif.slave_cb.RVALID <= 1'b0;
+            vif.slave_cb.RLAST  <= 1'b0;
+        end
+
+        r_channel_mutex.put(1);
+
+        `uvm_info(get_type_name(),
+                  $sformatf("Read complete: ID=0x%0h ADDR=0x%08h RESP=%s  %0d beats sent",
+                            ar.id, ar.addr, rd_resp.name(), ar.len + 1), UVM_MEDIUM)
+    endtask : drive_r_single
 
     // =========================================================================
     // calc_beat_addr — Calculate address for each beat in a burst

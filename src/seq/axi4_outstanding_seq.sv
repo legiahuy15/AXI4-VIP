@@ -6,6 +6,11 @@
 //               Generates multiple concurrent write and read transactions
 //               using fork-join to test the bus's outstanding and interleaving
 //               capabilities.
+//
+//               Outstanding depth is enforced on the actual bus (not just the
+//               sequencer handshake) by waiting on each transaction's
+//               done_event before releasing the semaphore slot.
+//
 //               This file is `included inside axi4_pkg.sv.
 //==============================================================================
 
@@ -29,6 +34,10 @@ class axi4_outstanding_seq extends axi4_base_sequence;
 
     // =========================================================================
     // body — generate write/read transactions concurrently with outstanding limit
+    //   The semaphore slot is only released after the driver signals
+    //   done_event (B or R response received), ensuring that
+    //   outstanding_depth truly reflects the number of in-flight
+    //   transactions on the bus at any point in time.
     // =========================================================================
     virtual task body();
         semaphore sem_write;
@@ -66,6 +75,10 @@ class axi4_outstanding_seq extends axi4_base_sequence;
 
                             finish_item(wr_tr);
 
+                            // Wait for actual B response on the bus before
+                            // releasing the semaphore slot.
+                            wr_tr.done_event.wait_trigger();
+
                             `uvm_info(get_type_name(),
                                       $sformatf("Outstanding Write [#%0d] complete: ID=0x%0h", idx, wr_tr.id),
                                       UVM_HIGH)
@@ -100,6 +113,10 @@ class axi4_outstanding_seq extends axi4_base_sequence;
                                       UVM_HIGH)
 
                             finish_item(rd_tr);
+
+                            // Wait for actual R response (all beats) on the bus
+                            // before releasing the semaphore slot.
+                            rd_tr.done_event.wait_trigger();
 
                             `uvm_info(get_type_name(),
                                       $sformatf("Outstanding Read [#%0d] complete: ID=0x%0h", idx, rd_tr.id),
