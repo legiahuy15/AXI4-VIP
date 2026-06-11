@@ -24,29 +24,44 @@ class axi4_outstanding_test extends axi4_base_test;
     endfunction : new
 
     // =========================================================================
+    // Configurable knobs (class members so both phases can access)
+    // =========================================================================
+    int unsigned depth      = 4;
+    bit          r_reorder  = 1;
+
+    // =========================================================================
+    // Build phase — push slave-driver config BEFORE env/agent/drv are built
+    //   UVM phase order: build → connect → … → run
+    //   Slave driver reads config_db in its build_phase, so we must set
+    //   the values here, before super.build_phase() creates the env tree.
+    // =========================================================================
+    function void build_phase(uvm_phase phase);
+        // Allow command-line overrides (available at elaboration time)
+        void'($value$plusargs("OUTSTANDING_DEPTH=%d", depth));
+        void'($value$plusargs("R_REORDER_EN=%d", r_reorder));
+
+        // Push config BEFORE super.build_phase creates env → slave_agent → drv
+        uvm_config_db#(bit)::set(this, "env.slave_agent.drv",
+                                 "r_reorder_enable", r_reorder);
+        uvm_config_db#(int unsigned)::set(this, "env.slave_agent.drv",
+                                          "r_outstanding_max", depth);
+
+        super.build_phase(phase);
+    endfunction : build_phase
+
+    // =========================================================================
     // Run phase — execute outstanding sequence
     // =========================================================================
     task run_phase(uvm_phase phase);
         axi4_outstanding_seq outstanding_seq;
         int unsigned num_writes = 15;
         int unsigned num_reads  = 15;
-        int unsigned depth      = 4;
-        bit          r_reorder  = 1;
 
         phase.raise_objection(this, "axi4_outstanding_test: starting");
 
         // Allow command-line overrides
         void'($value$plusargs("NUM_WRITES=%d", num_writes));
         void'($value$plusargs("NUM_READS=%d", num_reads));
-        void'($value$plusargs("OUTSTANDING_DEPTH=%d", depth));
-        void'($value$plusargs("R_REORDER_EN=%d", r_reorder));
-
-        // Enable out-of-order read responses on the slave driver so
-        // the master is exercised with non-FIFO response ordering.
-        uvm_config_db#(bit)::set(this, "env.slave_agent.drv",
-                                 "r_reorder_enable", r_reorder);
-        uvm_config_db#(int unsigned)::set(this, "env.slave_agent.drv",
-                                          "r_outstanding_max", depth);
 
         `uvm_info(get_type_name(),
                   $sformatf("Starting outstanding test with %0d writes, %0d reads, depth=%0d, r_reorder=%0b",
