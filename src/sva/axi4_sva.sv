@@ -429,7 +429,8 @@ module axi4_sva #(
 
             // 2. R handshake checks
             if (RVALID && RREADY) begin
-                logic [ID_WIDTH-1:0] cur_rid = RID;
+                logic [ID_WIDTH-1:0] cur_rid;
+                cur_rid = RID;
                 if (!r_beat_cnt.exists(cur_rid)) begin
                     r_beat_cnt[cur_rid] = 0;
                 end
