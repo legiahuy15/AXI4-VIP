@@ -53,10 +53,11 @@ class axi4_write_read_back_seq extends axi4_base_sequence;
         }) `uvm_fatal(get_type_name(), "Randomization failed for write transaction")
 
         finish_item(wr_tr);
+        wr_tr.done_event.wait_trigger();
 
         `uvm_info(get_type_name(),
                   $sformatf("Write phase: ADDR=0x%08h LEN=%0d SIZE=%s BURST=%s",
-                            wr_tr.addr, wr_tr.len, wr_tr.size.name(), wr_tr.burst.name()),
+                             wr_tr.addr, wr_tr.len, wr_tr.size.name(), wr_tr.burst.name()),
                   UVM_MEDIUM)
 
         // ---- Phase 2: Read-back (same addr, len, size, burst) ----
@@ -73,6 +74,7 @@ class axi4_write_read_back_seq extends axi4_base_sequence;
         }) `uvm_fatal(get_type_name(), "Randomization failed for read-back transaction")
 
         finish_item(rd_tr);
+        rd_tr.done_event.wait_trigger();
 
         `uvm_info(get_type_name(),
                   $sformatf("Read-back phase: ADDR=0x%08h LEN=%0d — data integrity check via scoreboard",
