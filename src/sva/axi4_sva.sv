@@ -350,8 +350,9 @@ module axi4_sva #(
     int unsigned aw_len_fifo[$]; // FIFO storing AWLEN values from AW handshakes
     int unsigned w_len_fifo[$];  // FIFO storing actual W burst lengths (completed before AW)
 
-    int unsigned r_beat_cnt;     // Counts R beats within a burst
-    int unsigned ar_len_fifo[$]; // FIFO storing ARLEN values from AR handshakes
+    // Queues and beat counters per ID to support out-of-order read responses
+    int unsigned ar_len_fifo[logic [ID_WIDTH-1:0]][$];
+    int unsigned r_beat_cnt[logic [ID_WIDTH-1:0]];
 
     // Track AW handshakes and W burst completions
     always @(posedge clk or negedge rst_n) begin
@@ -419,47 +420,47 @@ module axi4_sva #(
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             ar_len_fifo.delete();
+            r_beat_cnt.delete();
         end else begin
             // 1. Capture ARLEN when AR handshakes
             if (ARVALID && ARREADY) begin
-                ar_len_fifo.push_back(ARLEN);
+                ar_len_fifo[ARID].push_back(ARLEN);
             end
 
             // 2. R handshake checks
             if (RVALID && RREADY) begin
-                if (ar_len_fifo.size() > 0) begin
-                    if (r_beat_cnt == ar_len_fifo[0]) begin
+                logic [ID_WIDTH-1:0] cur_rid = RID;
+                if (!r_beat_cnt.exists(cur_rid)) begin
+                    r_beat_cnt[cur_rid] = 0;
+                end
+
+                if (ar_len_fifo.exists(cur_rid) && ar_len_fifo[cur_rid].size() > 0) begin
+                    if (r_beat_cnt[cur_rid] == ar_len_fifo[cur_rid][0]) begin
                         RLAST_CORRECT_CHECK : assert (RLAST)
                             else $error("[SVA] RLAST not asserted on final R beat (beat=%0d, expected ARLEN=%0d)",
-                                        r_beat_cnt, ar_len_fifo[0]);
+                                        r_beat_cnt[cur_rid], ar_len_fifo[cur_rid][0]);
                     end else begin
                         RLAST_NOT_EARLY_CHECK : assert (!RLAST)
                             else $error("[SVA] RLAST asserted too early (beat=%0d, expected ARLEN=%0d)",
-                                        r_beat_cnt, ar_len_fifo[0]);
+                                        r_beat_cnt[cur_rid], ar_len_fifo[cur_rid][0]);
                     end
                 end else begin
                     RLAST_WITHOUT_AR : assert (1'b0)
-                        else $error("[SVA] R handshake occurred without outstanding AR handshake");
+                        else $error("[SVA] R handshake occurred without outstanding AR handshake for RID=0x%0h", cur_rid);
                 end
 
                 if (RLAST) begin
-                    if (ar_len_fifo.size() > 0) begin
-                        void'(ar_len_fifo.pop_front());
+                    if (ar_len_fifo.exists(cur_rid) && ar_len_fifo[cur_rid].size() > 0) begin
+                        void'(ar_len_fifo[cur_rid].pop_front());
+                        if (ar_len_fifo[cur_rid].size() == 0) begin
+                            ar_len_fifo.delete(cur_rid);
+                        end
                     end
+                    r_beat_cnt[cur_rid] = 0;
+                end else begin
+                    r_beat_cnt[cur_rid] = r_beat_cnt[cur_rid] + 1;
                 end
             end
-        end
-    end
-
-    // R beat counter - reset on RLAST handshake
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
-            r_beat_cnt <= 0;
-        end else if (RVALID && RREADY) begin
-            if (RLAST)
-                r_beat_cnt <= 0;
-            else
-                r_beat_cnt <= r_beat_cnt + 1;
         end
     end
 

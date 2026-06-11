@@ -82,6 +82,9 @@ class axi4_slave_driver extends uvm_driver #(axi4_transaction);
     // (AXI4: no read data interleaving within a burst)
     protected semaphore r_channel_mutex;
 
+    // ID-specific mutexes to preserve response order for transactions with the same ID
+    protected semaphore id_mutex [bit [AXI4_ID_WIDTH-1:0]];
+
     // =========================================================================
     // Constructor
     // =========================================================================
@@ -150,6 +153,7 @@ class axi4_slave_driver extends uvm_driver #(axi4_transaction);
         w_fifo.delete();
         b_fifo.delete();
         ar_fifo.delete();
+        id_mutex.delete();
     endtask : reset_signals
 
     // =========================================================================
@@ -367,6 +371,11 @@ class axi4_slave_driver extends uvm_driver #(axi4_transaction);
             wait (ar_fifo.size() > 0);
             ar = ar_fifo.pop_front();
 
+            // Initialize ID-specific mutex if it doesn't exist yet
+            if (!id_mutex.exists(ar.id)) begin
+                id_mutex[ar.id] = new(1);
+            end
+
             r_outstanding_sem.get(1);
             fork
                 automatic ar_info_t ar_local = ar;
@@ -415,6 +424,9 @@ class axi4_slave_driver extends uvm_driver #(axi4_transaction);
             rdata_q.push_back(rdata);
         end
 
+        // Acquire ID-specific lock first to preserve request order for the same ID
+        id_mutex[ar.id].get(1);
+
         // When reordering is enabled, add a random delay before acquiring
         // the channel mutex.  This creates natural reordering: a later
         // request with a shorter delay will drive before an earlier one.
@@ -445,6 +457,7 @@ class axi4_slave_driver extends uvm_driver #(axi4_transaction);
         end
 
         r_channel_mutex.put(1);
+        id_mutex[ar.id].put(1);
 
         `uvm_info(get_type_name(),
                   $sformatf("Read complete: ID=0x%0h ADDR=0x%08h RESP=%s  %0d beats sent",
