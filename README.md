@@ -77,6 +77,7 @@ The AXI4 VIP supports standard AMBA AXI4 features:
 - **Burst Lengths**: Up to 256 beats per transaction for INCR burst type (complying with AXI4 specification).
 - **Out-of-Order Execution**: Monitor and scoreboard track and match out-of-order read and write responses based on Transaction IDs.
 - **Outstanding Transactions**: Test harness verifies multi-threaded outstanding reads and writes.
+- **Read Data Interleaving Limitation**: Read data interleaving is not supported. Once a read data burst starts, all subsequent beats must share the same Transaction ID (RID) until the burst is completed with RLAST.
 - **Exclusive Access**: Supports AXI4 locking mechanism (EXCLUSIVE/NORMAL) with address monitoring.
 - **Strobe Routing**: Byte lane write enablement check via `WSTRB`.
 - **SystemVerilog Assertions (SVA)**: Checks protocol stability, handshakes, payload stability, out-of-order data interleaving violations, and invalid/reserved configurations.
