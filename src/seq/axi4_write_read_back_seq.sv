@@ -39,7 +39,7 @@ class axi4_write_read_back_seq extends axi4_base_sequence;
     virtual task body();
         axi4_transaction wr_tr, rd_tr;
 
-        // ---- Phase 1: Write ----
+        // Phase 1: Write
         wr_tr = axi4_transaction::type_id::create("wr_tr");
         start_item(wr_tr);
 
@@ -60,7 +60,7 @@ class axi4_write_read_back_seq extends axi4_base_sequence;
                              wr_tr.addr, wr_tr.len, wr_tr.size.name(), wr_tr.burst.name()),
                   UVM_MEDIUM)
 
-        // ---- Phase 2: Read-back (same addr, len, size, burst) ----
+        // Phase 2: Read-back (same addr, len, size, burst)
         rd_tr = axi4_transaction::type_id::create("rd_tr");
         start_item(rd_tr);
 

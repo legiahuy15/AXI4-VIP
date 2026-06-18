@@ -187,3 +187,9 @@ Removes all generated compilation libraries, temporary wave files, and coverage 
 ```bash
 make clean
 ```
+
+---
+
+## AI Disclaimer
+
+This repository and its codebase have been developed and/or refactored with the assistance of Artificial Intelligence (AI) tools. These tools were used to assist in scaffolding boilerplate code and optimizing testbench components. All code logic, test suites, and simulation configurations have been reviewed and validated to ensure compliance with the AMBA AXI4 protocol specification.
