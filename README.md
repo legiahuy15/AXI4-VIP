@@ -1,12 +1,12 @@
 # AXI4 UVM Verification Intellectual Property (VIP)
 
-This repository contains a functional, parameterized, and compliant AMBA AXI4 Verification Intellectual Property (VIP) implemented in SystemVerilog and the Universal Verification Methodology (UVM). It provides a self-contained verification environment with a Master agent and a Slave agent connected directly to each other through a shared AXI4 interface — no external DUT is required. The VIP is suitable for protocol-level verification, IP development, and as a reusable reference environment for AXI4-based designs.
+This repository contains a functional, parameterized, and compliant AMBA AXI4 Verification Intellectual Property (VIP) implemented in SystemVerilog and the Universal Verification Methodology (UVM). It provides a self-contained verification environment with a Master agent and a Slave agent connected directly to each other through a shared AXI4 interface - no external DUT is required. The VIP is suitable for protocol-level verification, IP development, and as a reusable reference environment for AXI4-based designs.
 
 ---
 
 ## Architecture Overview
 
-The VIP consists of two main agents — **Master** and **Slave** — connected directly to each other through a shared AXI4 virtual interface (`axi4_if`). There is no DUT in the loop; the Master agent generates AXI4 transactions (via sequences) and the Slave agent responds to them (with a built-in memory model and configurable response behavior). The scoreboard compares transactions observed by both monitors to ensure protocol-level consistency, while the SVA module checks protocol compliance directly on the interface signals.
+The VIP consists of two main agents - **Master** and **Slave** - connected directly to each other through a shared AXI4 virtual interface (`axi4_if`). There is no DUT in the loop; the Master agent generates AXI4 transactions (via sequences) and the Slave agent responds to them (with a built-in memory model and configurable response behavior). The scoreboard compares transactions observed by both monitors to ensure protocol-level consistency, while the SVA module checks protocol compliance directly on the interface signals.
 
 The overall architecture is documented in the accompanying design diagram:
 ![AXI4 VIP Architecture](doc/axi4_vip.png)
@@ -19,72 +19,6 @@ The overall architecture is documented in the accompanying design diagram:
 - **axi4_scoreboard**: Tracks transactions in progress, manages out-of-order responses, and maintains an internal reference memory model to verify read-after-write data integrity, including strobe routing verification.
 - **axi4_coverage**: Functional coverage monitor capturing AXI4 transaction scenarios, address alignment, burst lengths, burst types, sizes, and channel back-pressures.
 - **axi4_sva**: Comprehensive SystemVerilog Assertions module checking AXI4 protocol compliance directly on the interface.
-
----
-
-## Directory Structure
-
-```text
-axi4_vip/
-├── LICENSE
-├── README.md
-├── doc/
-│   ├── axi4_vip.png
-│   └── axi4_vip_vplan.xlsx
-├── sim/
-│   ├── Makefile
-│   └── (simulation artifacts: logs, coverage, reports, etc.)
-└── src/
-    ├── axi4_if.sv
-    ├── axi4_pkg.sv
-    ├── axi4_test_pkg.sv
-    ├── tb_top.sv
-    ├── cfg/
-    │   ├── axi4_agent_config.sv
-    │   ├── axi4_transaction.sv
-    │   └── axi4_types.sv
-    ├── env/
-    │   ├── axi4_coverage.sv
-    │   ├── axi4_scoreboard.sv
-    │   ├── axi4_vip_env.sv
-    │   └── axi4_vip_env_config.sv
-    ├── mst/
-    │   ├── axi4_master_agent.sv
-    │   ├── axi4_master_driver.sv
-    │   ├── axi4_master_monitor.sv
-    │   └── axi4_master_sequencer.sv
-    ├── seq/
-    │   ├── axi4_base_sequence.sv
-    │   ├── axi4_single_write_seq.sv
-    │   ├── axi4_single_read_seq.sv
-    │   ├── axi4_write_read_back_seq.sv
-    │   ├── axi4_random_seq.sv
-    │   ├── axi4_outstanding_seq.sv
-    │   ├── axi4_out_of_order_seq.sv
-    │   ├── axi4_exclusive_seq.sv
-    │   ├── axi4_unaligned_seq.sv
-    │   ├── axi4_cache_prot_seq.sv
-    │   ├── axi4_strobe_pattern_seq.sv
-    │   └── axi4_burst_sweep_seq.sv
-    ├── slv/
-    │   ├── axi4_slave_agent.sv
-    │   ├── axi4_slave_driver.sv
-    │   ├── axi4_slave_monitor.sv
-    │   └── axi4_slave_sequencer.sv
-    ├── sva/
-    │   └── axi4_sva.sv
-    └── test/
-        ├── axi4_base_test.sv
-        ├── axi4_sanity_test.sv
-        ├── axi4_random_test.sv
-        ├── axi4_outstanding_test.sv
-        ├── axi4_out_of_order_test.sv
-        ├── axi4_exclusive_test.sv
-        ├── axi4_unaligned_test.sv
-        ├── axi4_cache_prot_test.sv
-        ├── axi4_strobe_test.sv
-        └── axi4_burst_sweep_test.sv
-```
 
 ---
 
