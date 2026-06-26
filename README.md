@@ -1,12 +1,12 @@
 # AXI4 UVM Verification Intellectual Property (VIP)
 
-This repository contains a functional, parameterized, and compliant AMBA AXI4 Verification Intellectual Property (VIP) implemented in SystemVerilog and the Universal Verification Methodology (UVM). It is designed to verify AXI4-compliant designs (Master, Slave, or Interconnect components) with high reliability, coverage collection, and protocol check assertions.
+This repository contains a functional, parameterized, and compliant AMBA AXI4 Verification Intellectual Property (VIP) implemented in SystemVerilog and the Universal Verification Methodology (UVM). It provides a self-contained verification environment with a Master agent and a Slave agent connected directly to each other through a shared AXI4 interface — no external DUT is required. The VIP is suitable for protocol-level verification, IP development, and as a reusable reference environment for AXI4-based designs.
 
 ---
 
 ## Architecture Overview
 
-The VIP consists of two main agents (Master and Slave) connected through a virtual interface to the Device Under Test (DUT).
+The VIP consists of two main agents — **Master** and **Slave** — connected directly to each other through a shared AXI4 virtual interface (`axi4_if`). There is no DUT in the loop; the Master agent generates AXI4 transactions (via sequences) and the Slave agent responds to them (with a built-in memory model and configurable response behavior). The scoreboard compares transactions observed by both monitors to ensure protocol-level consistency, while the SVA module checks protocol compliance directly on the interface signals.
 
 The overall architecture is documented in the accompanying design diagram:
 ![AXI4 VIP Architecture](doc/axi4_vip.png)
@@ -54,7 +54,18 @@ axi4_vip/
     │   ├── axi4_master_monitor.sv
     │   └── axi4_master_sequencer.sv
     ├── seq/
-    │   └── (axi4 sequence library)
+    │   ├── axi4_base_sequence.sv
+    │   ├── axi4_single_write_seq.sv
+    │   ├── axi4_single_read_seq.sv
+    │   ├── axi4_write_read_back_seq.sv
+    │   ├── axi4_random_seq.sv
+    │   ├── axi4_outstanding_seq.sv
+    │   ├── axi4_out_of_order_seq.sv
+    │   ├── axi4_exclusive_seq.sv
+    │   ├── axi4_unaligned_seq.sv
+    │   ├── axi4_cache_prot_seq.sv
+    │   ├── axi4_strobe_pattern_seq.sv
+    │   └── axi4_burst_sweep_seq.sv
     ├── slv/
     │   ├── axi4_slave_agent.sv
     │   ├── axi4_slave_driver.sv
@@ -63,7 +74,16 @@ axi4_vip/
     ├── sva/
     │   └── axi4_sva.sv
     └── test/
-        └── (axi4 test library)
+        ├── axi4_base_test.sv
+        ├── axi4_sanity_test.sv
+        ├── axi4_random_test.sv
+        ├── axi4_outstanding_test.sv
+        ├── axi4_out_of_order_test.sv
+        ├── axi4_exclusive_test.sv
+        ├── axi4_unaligned_test.sv
+        ├── axi4_cache_prot_test.sv
+        ├── axi4_strobe_test.sv
+        └── axi4_burst_sweep_test.sv
 ```
 
 ---
@@ -77,7 +97,7 @@ The AXI4 VIP supports standard AMBA AXI4 features:
 - **Burst Lengths**: Up to 256 beats per transaction for INCR burst type (complying with AXI4 specification).
 - **Out-of-Order Execution**: Monitor and scoreboard track and match out-of-order read and write responses based on Transaction IDs.
 - **Outstanding Transactions**: Test harness verifies multi-threaded outstanding reads and writes.
-- **Read Data Interleaving Limitation**: Read data interleaving is not supported. Once a read data burst starts, all subsequent beats must share the same Transaction ID (RID) until the burst is completed with RLAST.
+- **Read Data Interleaving**: Not supported, as per the AXI4 specification (read data interleaving was removed in AXI4; it was an AXI3 feature). Once a read data burst starts, all subsequent beats must share the same Transaction ID (RID) until the burst is completed with RLAST.
 - **Exclusive Access**: Supports AXI4 locking mechanism (EXCLUSIVE/NORMAL) with address monitoring.
 - **Strobe Routing**: Byte lane write enablement check via `WSTRB`.
 - **SystemVerilog Assertions (SVA)**: Checks protocol stability, handshakes, payload stability, out-of-order data interleaving violations, and invalid/reserved configurations.
