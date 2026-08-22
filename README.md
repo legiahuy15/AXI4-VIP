@@ -32,12 +32,13 @@ The Master agent generates transactions via UVM sequences; the Slave agent respo
 - **Burst length** - up to 256 beats (INCR), per AXI4.
 - **Out-of-order** - ID-based tracking and matching of read/write responses.
 - **Outstanding transactions** - multi-threaded outstanding reads and writes.
+- **Read data interleaving** - supported by AXI4 for read transactions with different IDs, but not implemented by this VIP.
 - **Exclusive access** - EXCLUSIVE/NORMAL locking with reservation tracking and EXOKAY/OKAY resolution.
 - **Write strobes** - per-byte-lane `WSTRB` routing verification.
 - **Write-channel ordering** - configurable AW/W interleaving (parallel, AW-first, W-first).
 - **Assertions** - handshake and payload stability, ordering, and illegal/reserved-value checks.
 
-Read data interleaving is intentionally unsupported, matching AXI4 (removed from AXI3): once a read burst begins, all beats share the same `RID` until `RLAST`.
+This repository does not support read data interleaving: once it starts returning a read burst, it completes that burst through `RLAST` before returning data for another read transaction. This is a limitation of this VIP, not of the AXI4 protocol itself.
 
 ---
 
